@@ -1,6 +1,14 @@
 import React from "react";
+import { Link,useNavigate } from "react-router-dom";
 
 export default function Header() {
+  const scrollWithOffset = (el) => {
+    const yCoordinate = el.getBoundingClientRect().top + window.pageYOffset;
+    let yOffset;
+    window.scrollTo({ top: yCoordinate + yOffset, behavior: "smooth" });
+  };
+  const navigate = useNavigate();
+
   return (
     <>
       {/* header */}
@@ -37,28 +45,30 @@ export default function Header() {
             <div className="collapse navbar-collapse" id="collapsibleNavbar">
               <ul className="navbar-nav ml-auto text-nowrap">
                 <li className="nav-item active">
-                  <a className="nav-link" href="#">
+                  <Link className="nav-link" to="/">
                     Home
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" href="#newin" onClick={()=>{
+                    navigate("/")
+                  }}>
+                    Now Showing
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="#">
+                    Coming Soon
                   </a>
                 </li>
                 <li className="nav-item">
                   <a className="nav-link" href="#">
-                    What's on
+                    Cinemas
                   </a>
                 </li>
                 <li className="nav-item">
                   <a className="nav-link" href="#">
-                    Shortcodes
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    News
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    Contact
+                    Login
                   </a>
                 </li>
               </ul>

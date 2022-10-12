@@ -1,6 +1,6 @@
 import Carousel from "../Carousel/Carousel";
 import Cinemas from "../Cinemas/Cinemas";
-import Movies from "../Movies/Movies";
+import Soon from "../Soon/Soon";
 import NewIn from "../NewIn/NewIn";
 
 export default function Home() {
@@ -9,8 +9,8 @@ export default function Home() {
     <>
       <Carousel />
       <NewIn />
+      <Soon/>
       <Cinemas />
-      <Movies/>
     </>
   );
 }

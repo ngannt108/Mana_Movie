@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Slider from "react-slick";
 
 export default function NewIn() {
@@ -45,18 +46,18 @@ export default function NewIn() {
               <img className="img-fluid" src="./img/movie-1.jpg" alt="" />
               <div className="newin__layout d-flex justify-content-center align-items-center">
                 <div className="text-center text-white">
-                  <a
-                    href="https://youtu.be/d96cjJhvlMA"
+                  <Link
+                    to="https://youtu.be/d96cjJhvlMA"
                     data-vbtype="video"
                     className="venobox play vbox-item"
                     tabIndex="0"
                   >
                     <i className="fa fa-play"></i>
-                  </a>
+                  </Link>
                   <br />
-                  <a href="#" className="read-more" tabIndex="0">
+                  <Link to="#" className="read-more" tabIndex="0">
                     read more
-                  </a>
+                  </Link>
                   <span className="date">Released: 7 Mar, 2017</span>
                 </div>
               </div>
@@ -75,18 +76,18 @@ export default function NewIn() {
               <img className="img-fluid" src="./img/movie-2.jpg" alt="" />
               <div className="newin__layout d-flex justify-content-center align-items-center">
                 <div className="text-center text-white">
-                  <a
-                    href="https://youtu.be/d96cjJhvlMA"
+                  <Link
+                    to="https://youtu.be/d96cjJhvlMA"
                     data-vbtype="video"
                     className="venobox play vbox-item"
                     tabIndex="0"
                   >
                     <i className="fa fa-play"></i>
-                  </a>
+                  </Link>
                   <br />
-                  <a href="#" className="read-more" tabIndex="0">
+                  <Link to="#" className="read-more" tabIndex="0">
                     read more
-                  </a>
+                  </Link>
                   <span className="date">Released: 7 Mar, 2017</span>
                 </div>
               </div>
@@ -105,18 +106,18 @@ export default function NewIn() {
               <img className="img-fluid" src="./img/movie-3.jpg" alt="" />
               <div className="newin__layout d-flex justify-content-center align-items-center">
                 <div className="text-center text-white">
-                  <a
-                    href="https://youtu.be/d96cjJhvlMA"
+                  <Link
+                    to="https://youtu.be/d96cjJhvlMA"
                     data-vbtype="video"
                     className="venobox play vbox-item"
                     tabIndex="0"
                   >
                     <i className="fa fa-play"></i>
-                  </a>
+                  </Link>
                   <br />
-                  <a href="#" className="read-more" tabIndex="0">
+                  <Link to="#" className="read-more" tabIndex="0">
                     read more
-                  </a>
+                  </Link>
                   <span className="date">Released: 7 Mar, 2017</span>
                 </div>
               </div>
@@ -135,18 +136,18 @@ export default function NewIn() {
               <img className="img-fluid" src="./img/movie-4.jpg" alt="" />
               <div className="newin__layout d-flex justify-content-center align-items-center">
                 <div className="text-center text-white">
-                  <a
-                    href="https://youtu.be/d96cjJhvlMA"
+                  <Link
+                    to="https://youtu.be/d96cjJhvlMA"
                     data-vbtype="video"
                     className="venobox play vbox-item"
                     tabIndex="0"
                   >
                     <i className="fa fa-play"></i>
-                  </a>
+                  </Link>
                   <br />
-                  <a href="#" className="read-more" tabIndex="0">
+                  <Link to="#" className="read-more" tabIndex="0">
                     read more
-                  </a>
+                  </Link>
                   <span className="date">Released: 7 Mar, 2017</span>
                 </div>
               </div>
@@ -165,18 +166,18 @@ export default function NewIn() {
               <img className="img-fluid" src="./img/movie-1.jpg" alt="" />
               <div className="newin__layout d-flex justify-content-center align-items-center">
                 <div className="text-center text-white">
-                  <a
-                    href="https://youtu.be/d96cjJhvlMA"
+                  <Link
+                    to="https://youtu.be/d96cjJhvlMA"
                     data-vbtype="video"
                     className="venobox play vbox-item"
                     tabIndex="0"
                   >
                     <i className="fa fa-play"></i>
-                  </a>
+                  </Link>
                   <br />
-                  <a href="#" className="read-more" tabIndex="0">
+                  <Link href="#" className="read-more" tabIndex="0">
                     read more
-                  </a>
+                  </Link>
                   <span className="date">Released: 7 Mar, 2017</span>
                 </div>
               </div>
@@ -195,18 +196,18 @@ export default function NewIn() {
               <img className="img-fluid" src="./img/movie-2.jpg" alt="" />
               <div className="newin__layout d-flex justify-content-center align-items-center">
                 <div className="text-center text-white">
-                  <a
-                    href="https://youtu.be/d96cjJhvlMA"
+                  <Link
+                    to="https://youtu.be/d96cjJhvlMA"
                     data-vbtype="video"
                     className="venobox play vbox-item"
                     tabIndex="0"
                   >
                     <i className="fa fa-play"></i>
-                  </a>
+                  </Link>
                   <br />
-                  <a href="#" className="read-more" tabIndex="0">
+                  <Link to="#" className="read-more" tabIndex="0">
                     read more
-                  </a>
+                  </Link>
                   <span className="date">Released: 7 Mar, 2017</span>
                 </div>
               </div>
@@ -225,18 +226,18 @@ export default function NewIn() {
               <img className="img-fluid" src="./img/movie-3.jpg" alt="" />
               <div className="newin__layout d-flex justify-content-center align-items-center">
                 <div className="text-center text-white">
-                  <a
-                    href="https://youtu.be/d96cjJhvlMA"
+                  <Link
+                    to="https://youtu.be/d96cjJhvlMA"
                     data-vbtype="video"
                     className="venobox play vbox-item"
                     tabIndex="0"
                   >
                     <i className="fa fa-play"></i>
-                  </a>
+                  </Link>
                   <br />
-                  <a href="#" className="read-more" tabIndex="0">
+                  <Link to="#" className="read-more" tabIndex="0">
                     read more
-                  </a>
+                  </Link>
                   <span className="date">Released: 7 Mar, 2017</span>
                 </div>
               </div>
@@ -255,18 +256,18 @@ export default function NewIn() {
               <img className="img-fluid" src="./img/movie-4.jpg" alt="" />
               <div className="newin__layout d-flex justify-content-center align-items-center">
                 <div className="text-center text-white">
-                  <a
-                    href="https://youtu.be/d96cjJhvlMA"
+                  <Link
+                    to="https://youtu.be/d96cjJhvlMA"
                     data-vbtype="video"
                     className="venobox play vbox-item"
                     tabIndex="0"
                   >
                     <i className="fa fa-play"></i>
-                  </a>
+                  </Link>
                   <br />
-                  <a href="#" className="read-more" tabIndex="0">
+                  <Link to="#" className="read-more" tabIndex="0">
                     read more
-                  </a>
+                  </Link>
                   <span className="date">Released: 7 Mar, 2017</span>
                 </div>
               </div>

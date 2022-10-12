@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Carousel() {
   return (
@@ -25,14 +26,14 @@ export default function Carousel() {
                </p>
                <div>
                  <span className="carousel__span">PG</span>
-                 <a
+                 <Link
                    className="venobox btn btn-trailer"
                    data-vbtype="video"
-                   href="https://www.youtube.com/embed/RhFMIRuHAL4"
+                   to="https://www.youtube.com/embed/RhFMIRuHAL4"
                  >
                    <i className="fa fa-play"></i>
                    <span>Play Trailer</span>
-                 </a>
+                 </Link>
                </div>
              </div>
            </div>
@@ -51,14 +52,14 @@ export default function Carousel() {
                </p>
                <div>
                  <span className="carousel__span">15</span>
-                 <a
+                 <Link
                    className="venobox btn btn-trailer"
                    data-vbtype="video"
-                   href="https://www.youtube.com/embed/RhFMIRuHAL4"
+                   to="https://www.youtube.com/embed/RhFMIRuHAL4"
                  >
                    <i className="fa fa-play"></i>
                    <span>Play Trailer</span>
-                 </a>
+                 </Link>
                </div>
              </div>
            </div>
@@ -77,14 +78,14 @@ export default function Carousel() {
                </p>
                <div>
                  <span className="carousel__span">PG</span>
-                 <a
+                 <Link
                    className="venobox btn btn-trailer"
                    data-vbtype="video"
-                   href="https://www.youtube.com/embed/RhFMIRuHAL4"
+                   to="https://www.youtube.com/embed/RhFMIRuHAL4"
                  >
                    <i className="fa fa-play"></i>
                    <span>Play Trailer</span>
-                 </a>
+                 </Link>
                </div>
              </div>
            </div>
