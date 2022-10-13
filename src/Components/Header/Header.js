@@ -1,14 +1,13 @@
-import React from "react";
-import { Link,useNavigate } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { Link } from "react-router-dom";
+import { StoreContext } from "../../Redux/Store/Store";
 
 export default function Header() {
-  const scrollWithOffset = (el) => {
-    const yCoordinate = el.getBoundingClientRect().top + window.pageYOffset;
-    let yOffset;
-    window.scrollTo({ top: yCoordinate + yOffset, behavior: "smooth" });
-  };
-  const navigate = useNavigate();
-
+  const store = useContext(StoreContext);
+  const [userName, setUserName] = useState();
+  useEffect(() => {
+    setUserName(store.userAccount.account);
+  }, [store]);
   return (
     <>
       {/* header */}
@@ -27,9 +26,9 @@ export default function Header() {
           {/* navbar */}
           <nav className="navbar navbar-expand-md navbar-dark">
             {/* Brand */}
-            <a className="navbar-brand" href="#">
-              <img src="./img/logo.svg" alt="" />
-            </a>
+            <Link className="navbar-brand" to="/">
+              <img onClick={() => {}} src="./img/logo.svg" alt="" />
+            </Link>
 
             {/* Toggler/collapsibe Button */}
             <button
@@ -50,31 +49,43 @@ export default function Header() {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" href="#newin" onClick={()=>{
-                    navigate("/")
-                  }}>
-                    Now Showing
+                  <Link className="nav-link" to="#">
+                    What's on
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    Coming Soon
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    Cinemas
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    Login
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/MovieDetail">
-                    MovieDetail
+                  <Link className="nav-link" to="#">
+                    Shortcodes
                   </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="#">
+                    News
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  {userName ? (
+                    <div className="dropdown">
+                      <h1>{userName}</h1>
+                      <div className="dropdown-content">
+                        <Link
+                          onClick={() =>
+                            store.AccountDispatch({
+                              type: "ACCOUNT",
+                              payload: null,
+                            })
+                          }
+                          to="/"
+                        >
+                          ĐĂNG XUẤT
+                        </Link>
+                      </div>
+                    </div>
+                  ) : (
+                    <Link className="nav-link" to="/SignIn">
+                      Log in
+                    </Link>
+                  )}
                 </li>
               </ul>
             </div>

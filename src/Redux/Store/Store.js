@@ -1,15 +1,18 @@
 import React, { createContext } from "react";
-import MoviesReducer from "../MovieReducer";
-
+import MoviesReducer from "../Reducer/MoviesReducer";
+import AccountsReducer from "../Reducer/AccountsReducer";
 export const StoreContext = createContext(null);
 const Store = ({ children }) => {
-  const [comingMovie, DispatchComingMovie] = ReducerMovies();
- 
+  const [coming, DispatchComingMovie] = MoviesReducer();
+  const [showing, DispatchShowingMovie] = MoviesReducer();
+  const [account, DispatchAccount] = AccountsReducer(null);
   const store = {
-    lsComingMovie: {
-      ComingMovie: comingMovie,
-      ComingMovieDispatch: DispatchComingMovie,
-    }
+    ComingMovie: coming,
+    ComingDispatch: DispatchComingMovie,
+    ShowingMovie: showing,
+    ShowingDispatch: DispatchShowingMovie,
+    userAccount: account,
+    AccountDispatch: DispatchAccount,
   };
   return (
     <StoreContext.Provider value={store}>{children}</StoreContext.Provider>

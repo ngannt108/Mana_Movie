@@ -1,8 +1,8 @@
-// const API_DOMAIN = "http://localhost:3001/";
-const API_DOMAIN = "http://10.88.55.39:3001/";
+const API_DOMAIN = "http://localhost:3001/";
+// const API_DOMAIN = "http://10.88.55.39:3001/";
 
 export const API_MOVIE = {
-  SHOWING: API_DOMAIN + "movie",
+  MOVIE: API_DOMAIN + "movie",
 };
 
 export const API_CINEMA = {
@@ -10,6 +10,6 @@ export const API_CINEMA = {
 };
 
 export const API_ACCOUNTS = {
-  SIGNIN: API_DOMAIN + "accounts/signin",
-  SIGNUP: API_DOMAIN + "accounts/signUp",
+  SIGNIN: API_DOMAIN + "user/login",
+  SIGNUP: API_DOMAIN + "user/register",
 };
