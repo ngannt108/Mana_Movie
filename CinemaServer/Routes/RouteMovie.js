@@ -1,8 +1,9 @@
 const MovieController = require('../Controller/MovieController');
 
-var router = require('express').Router();
+const router = require('express').Router();
 
 router.get('/', MovieController.GetMovie);
-router.get('/detail', MovieController.GetMovieDetail);
+router.get('/schedule', MovieController.GetMovieSchedule);
+router.get('/comment', MovieController.GetMovieComment);
 
 module.exports = router;
