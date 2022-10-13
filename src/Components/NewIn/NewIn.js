@@ -1,286 +1,117 @@
-import React from "react";
+import React, { useState, useContext } from "react";
+import { Link } from "react-router-dom";
 import Slider from "react-slick";
+import { StoreContext } from "../../Redux/Store/Store";
 
 export default function NewIn() {
-  var setting = {
-    dots: false,
-    infinite: true,
-    speed: 300,
-    slidesToShow: 4,
+  const store = useContext(StoreContext);
+  const [nav1, setNav1] = useState();
+  const [nav2, setNav2] = useState();
+
+  var sliderFor = {
+    slidesToShow: 1,
     slidesToScroll: 1,
+    arrows: false,
+    fade: true,
+  };
+  var sliderNav = {
+    slidesToShow: 6,
+    slidesToScroll: 1,
+    dots: true,
+    centerMode: false,
+    focusOnSelect: true,
     responsive: [
       {
-        breakpoint: 767,
+        breakpoint: 1024,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 4,
           slidesToScroll: 1,
-          infinite: true,
-          dots: false,
+          arrows: false,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
           arrows: false,
         },
       },
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 2,
           slidesToScroll: 1,
-          infinite: true,
-          dots: false,
           arrows: false,
         },
       },
-      // You can unslick at a given breakpoint now by adding:
-      // settings: "unslick"
-      // instead of a settings object
     ],
   };
   return (
-    // NEW IN
-    <section id="newin" className="container">
-      <h6 className="title__heading">New in</h6>
-      <div className="newin__content pt-4">
-        <Slider {...setting} className="text-center">
-          <div className="col-md-9">
-            <div className="newin__item">
-              <img className="img-fluid" src="./img/movie-1.jpg" alt="" />
-              <div className="newin__layout d-flex justify-content-center align-items-center">
-                <div className="text-center text-white">
-                  <a
-                    href="https://youtu.be/d96cjJhvlMA"
-                    data-vbtype="video"
-                    className="venobox play vbox-item"
-                    tabIndex="0"
-                  >
-                    <i className="fa fa-play"></i>
-                  </a>
-                  <br />
-                  <a href="#" className="read-more" tabIndex="0">
-                    read more
-                  </a>
-                  <span className="date">Released: 7 Mar, 2017</span>
+    // Coming Soon
+    <section id="comingsoon" className="dark">
+      <div>
+        <Slider
+          asNavFor={nav2}
+          ref={(slider1) => setNav1(slider1)}
+          {...sliderFor}
+          className="slider-for"
+        >
+          {store.ShowingMovie.listMovie?.map((movie, index1) => (
+            <div key={index1} className="comingsoon__top top-1 pt-5">
+              <h1 className="container heading pt-4 pb-4">NOW SHOWING</h1>
+              <div className="container comingsoon__content px-0">
+                <div className="comingsoon__item" data-slick-index="0">
+                  <div className="row">
+                    <div className="comingsoon__left col-6 pr-5">
+                      <h1>{movie.ApiGenreName}</h1>
+                      <h2>{movie.Title}</h2>
+                      <div className="date">
+                        <i className="fas fa-calendar-week"></i>
+                        {movie.OpeningDate}
+                      </div>
+                      <p className="pr-5 movie-decription">
+                        {movie.SynopsisEn}
+                      </p>
+                      <Link to="#">More info </Link>
+                    </div>
+                    <div
+                      style={{
+                        background: `url(${movie.GraphicUrl})`,
+                        height: "600px",
+                      }}
+                      className="comingsoon__right item1 col-6"
+                    >
+                      <Link
+                        to={movie.TrailerUrl}
+                        data-vbtype="video"
+                        className="venobox"
+                      >
+                        <i className="fa fa-play"></i>
+                      </Link>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-            <h1>The last post</h1>
-            <div>
-              <i className="fa fa-star"></i>
-              <i className="fa fa-star"></i>
-              <i className="fa fa-star"></i>
-              <i className="fa fa-star"></i>
-              <i className="fa fa-star"></i>
-            </div>
-          </div>
-          <div className="col-md-9">
-            <div className="newin__item">
-              <img className="img-fluid" src="./img/movie-2.jpg" alt="" />
-              <div className="newin__layout d-flex justify-content-center align-items-center">
-                <div className="text-center text-white">
-                  <a
-                    href="https://youtu.be/d96cjJhvlMA"
-                    data-vbtype="video"
-                    className="venobox play vbox-item"
-                    tabIndex="0"
-                  >
-                    <i className="fa fa-play"></i>
-                  </a>
-                  <br />
-                  <a href="#" className="read-more" tabIndex="0">
-                    read more
-                  </a>
-                  <span className="date">Released: 7 Mar, 2017</span>
-                </div>
-              </div>
-            </div>
-            <h1>Dark and lonely</h1>
-            <div>
-              <i className="fa fa-star"></i>
-              <i className="fa fa-star"></i>
-              <i className="fa fa-star"></i>
-              <i className="fa fa-star"></i>
-              <i className="fa fa-star grey"></i>
-            </div>
-          </div>
-          <div className="col-md-9">
-            <div className="newin__item">
-              <img className="img-fluid" src="./img/movie-3.jpg" alt="" />
-              <div className="newin__layout d-flex justify-content-center align-items-center">
-                <div className="text-center text-white">
-                  <a
-                    href="https://youtu.be/d96cjJhvlMA"
-                    data-vbtype="video"
-                    className="venobox play vbox-item"
-                    tabIndex="0"
-                  >
-                    <i className="fa fa-play"></i>
-                  </a>
-                  <br />
-                  <a href="#" className="read-more" tabIndex="0">
-                    read more
-                  </a>
-                  <span className="date">Released: 7 Mar, 2017</span>
-                </div>
-              </div>
-            </div>
-            <h1>Venture</h1>
-            <div>
-              <i className="fa fa-star"></i>
-              <i className="fa fa-star"></i>
-              <i className="fa fa-star"></i>
-              <i className="fa fa-star"></i>
-              <i className="fa fa-star"></i>
-            </div>
-          </div>
-          <div className="col-md-9">
-            <div className="newin__item">
-              <img className="img-fluid" src="./img/movie-4.jpg" alt="" />
-              <div className="newin__layout d-flex justify-content-center align-items-center">
-                <div className="text-center text-white">
-                  <a
-                    href="https://youtu.be/d96cjJhvlMA"
-                    data-vbtype="video"
-                    className="venobox play vbox-item"
-                    tabIndex="0"
-                  >
-                    <i className="fa fa-play"></i>
-                  </a>
-                  <br />
-                  <a href="#" className="read-more" tabIndex="0">
-                    read more
-                  </a>
-                  <span className="date">Released: 7 Mar, 2017</span>
-                </div>
-              </div>
-            </div>
-            <h1>Hush</h1>
-            <div>
-              <i className="fa fa-star"></i>
-              <i className="fa fa-star"></i>
-              <i className="fa fa-star"></i>
-              <i className="fa fa-star grey"></i>
-              <i className="fa fa-star grey"></i>
-            </div>
-          </div>
-          <div className="col-md-9">
-            <div className="newin__item">
-              <img className="img-fluid" src="./img/movie-1.jpg" alt="" />
-              <div className="newin__layout d-flex justify-content-center align-items-center">
-                <div className="text-center text-white">
-                  <a
-                    href="https://youtu.be/d96cjJhvlMA"
-                    data-vbtype="video"
-                    className="venobox play vbox-item"
-                    tabIndex="0"
-                  >
-                    <i className="fa fa-play"></i>
-                  </a>
-                  <br />
-                  <a href="#" className="read-more" tabIndex="0">
-                    read more
-                  </a>
-                  <span className="date">Released: 7 Mar, 2017</span>
-                </div>
-              </div>
-            </div>
-            <h1>The last post</h1>
-            <div>
-              <i className="fa fa-star"></i>
-              <i className="fa fa-star"></i>
-              <i className="fa fa-star"></i>
-              <i className="fa fa-star"></i>
-              <i className="fa fa-star"></i>
-            </div>
-          </div>
-          <div className="col-md-9">
-            <div className="newin__item">
-              <img className="img-fluid" src="./img/movie-2.jpg" alt="" />
-              <div className="newin__layout d-flex justify-content-center align-items-center">
-                <div className="text-center text-white">
-                  <a
-                    href="https://youtu.be/d96cjJhvlMA"
-                    data-vbtype="video"
-                    className="venobox play vbox-item"
-                    tabIndex="0"
-                  >
-                    <i className="fa fa-play"></i>
-                  </a>
-                  <br />
-                  <a href="#" className="read-more" tabIndex="0">
-                    read more
-                  </a>
-                  <span className="date">Released: 7 Mar, 2017</span>
-                </div>
-              </div>
-            </div>
-            <h1>Dark and lonely</h1>
-            <div>
-              <i className="fa fa-star"></i>
-              <i className="fa fa-star"></i>
-              <i className="fa fa-star"></i>
-              <i className="fa fa-star"></i>
-              <i className="fa fa-star grey"></i>
-            </div>
-          </div>
-          <div className="col-md-9">
-            <div className="newin__item">
-              <img className="img-fluid" src="./img/movie-3.jpg" alt="" />
-              <div className="newin__layout d-flex justify-content-center align-items-center">
-                <div className="text-center text-white">
-                  <a
-                    href="https://youtu.be/d96cjJhvlMA"
-                    data-vbtype="video"
-                    className="venobox play vbox-item"
-                    tabIndex="0"
-                  >
-                    <i className="fa fa-play"></i>
-                  </a>
-                  <br />
-                  <a href="#" className="read-more" tabIndex="0">
-                    read more
-                  </a>
-                  <span className="date">Released: 7 Mar, 2017</span>
-                </div>
-              </div>
-            </div>
-            <h1>Venture</h1>
-            <div>
-              <i className="fa fa-star"></i>
-              <i className="fa fa-star"></i>
-              <i className="fa fa-star"></i>
-              <i className="fa fa-star"></i>
-              <i className="fa fa-star"></i>
-            </div>
-          </div>
-          <div className="col-md-9">
-            <div className="newin__item">
-              <img className="img-fluid" src="./img/movie-4.jpg" alt="" />
-              <div className="newin__layout d-flex justify-content-center align-items-center">
-                <div className="text-center text-white">
-                  <a
-                    href="https://youtu.be/d96cjJhvlMA"
-                    data-vbtype="video"
-                    className="venobox play vbox-item"
-                    tabIndex="0"
-                  >
-                    <i className="fa fa-play"></i>
-                  </a>
-                  <br />
-                  <a href="#" className="read-more" tabIndex="0">
-                    read more
-                  </a>
-                  <span className="date">Released: 7 Mar, 2017</span>
-                </div>
-              </div>
-            </div>
-            <h1>Hush</h1>
-            <div>
-              <i className="fa fa-star"></i>
-              <i className="fa fa-star"></i>
-              <i className="fa fa-star"></i>
-              <i className="fa fa-star grey"></i>
-              <i className="fa fa-star grey"></i>
-            </div>
-          </div>
+          ))}
         </Slider>
+        <div className="container py-4">
+          <Slider
+            asNavFor={nav1}
+            ref={(slider2) => setNav2(slider2)}
+            {...sliderNav}
+            className="comingsoon__nav slider-nav"
+          >
+            {store.ShowingMovie.listMovie?.map((movie, index) => (
+              <div key={index} className="cmnav__item" data-slick-index="0">
+                <img src={movie.GraphicUrl} alt="" className="mx-auto" />
+                <h5 className="mb-2">{movie.Title}</h5>
+                <h6>{movie.OpeningDate}</h6>
+              </div>
+            ))}
+          </Slider>
+        </div>
       </div>
     </section>
   );

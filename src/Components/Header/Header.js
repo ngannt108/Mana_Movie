@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { Link } from "react-router-dom";
+import { StoreContext } from "../../Redux/Store/Store";
 
 export default function Header() {
+  const store = useContext(StoreContext);
+  const [userName, setUserName] = useState();
+  useEffect(() => {
+    setUserName(store.userAccount.account);
+  }, [store]);
   return (
     <>
       {/* header */}
@@ -19,9 +26,9 @@ export default function Header() {
           {/* navbar */}
           <nav className="navbar navbar-expand-md navbar-dark">
             {/* Brand */}
-            <a className="navbar-brand" href="#">
-              <img src="./img/logo.svg" alt="" />
-            </a>
+            <Link className="navbar-brand" to="/">
+              <img onClick={() => {}} src="./img/logo.svg" alt="" />
+            </Link>
 
             {/* Toggler/collapsibe Button */}
             <button
@@ -37,29 +44,48 @@ export default function Header() {
             <div className="collapse navbar-collapse" id="collapsibleNavbar">
               <ul className="navbar-nav ml-auto text-nowrap">
                 <li className="nav-item active">
-                  <a className="nav-link" href="#">
+                  <Link className="nav-link" to="/">
                     Home
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
+                  <Link className="nav-link" to="#">
                     What's on
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
+                  <Link className="nav-link" to="#">
                     Shortcodes
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
+                  <Link className="nav-link" to="#">
                     News
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    Contact
-                  </a>
+                  {userName ? (
+                    <div className="dropdown">
+                      <h1>{userName}</h1>
+                      <div className="dropdown-content">
+                        <Link
+                          onClick={() =>
+                            store.AccountDispatch({
+                              type: "ACCOUNT",
+                              payload: null,
+                            })
+                          }
+                          to="/"
+                        >
+                          ĐĂNG XUẤT
+                        </Link>
+                      </div>
+                    </div>
+                  ) : (
+                    <Link className="nav-link" to="/SignIn">
+                      Log in
+                    </Link>
+                  )}
                 </li>
               </ul>
             </div>
