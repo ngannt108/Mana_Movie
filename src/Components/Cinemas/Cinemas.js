@@ -43,7 +43,7 @@ export default function Cinemas() {
     fetch("http://localhost:3001/Cinema")
       .then((res) => res.json())
       .then((dt) => setCinemas(dt));
-  }, []);
+  }, [date]);
 
   //Khi user chọn branch và nhấn xem thêm
   useEffect(() => {
@@ -69,7 +69,7 @@ export default function Cinemas() {
       setTotalIems(null);
       setCurentDate(date);
     }
-  }, [branchId]);
+  }, [branchId,date]);
 
   useEffect(() => {
     if (cineplex && ApiCinemaId) {
@@ -158,6 +158,7 @@ export default function Cinemas() {
                       <div
                         onClick={() => {
                           dateHandle(date);
+                          console.log(currentDate);
                         }}
                         className="day-wrapper"
                         key={i}

@@ -71,6 +71,11 @@ export default function Header() {
                     Login
                   </a>
                 </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/MovieDetail">
+                    MovieDetail
+                  </Link>
+                </li>
               </ul>
             </div>
           </nav>
