@@ -9,7 +9,7 @@ export default function Soon() {
     dots: false,
     infinite: true,
     speed: 300,
-    slidesToShow: 4,
+    slidesToShow: 5,
     slidesToScroll: 1,
     responsive: [
       {
@@ -49,14 +49,14 @@ export default function Soon() {
                 <img className="img-fluid" src={movie.GraphicUrl} alt="" />
                 <div className="newin__layout d-flex justify-content-center align-items-center">
                   <div className="text-center text-white">
-                    <Link
+                    {/* <Link
                       to={movie.TrailerUrl}
                       data-vbtype="video"
                       className="venobox play vbox-item"
                       tabIndex="0"
                     >
                       <i className="fa fa-play"></i>
-                    </Link>
+                    </Link> */}
                     <br />
                     <Link to="#" className="read-more" tabIndex="0">
                       Read more

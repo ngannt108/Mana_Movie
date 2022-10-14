@@ -7,6 +7,7 @@ import SignIn from "./Components/SignIn/SignIn";
 import SignUp from "./Components/SignUp/SignUp";
 import Footer from "./Components/Footer/Footer";
 import MovieDetail from "./Components/MovieDetail/MovieDetail";
+import Cinemas from "./Components/Cinemas/Cinemas";
 
 export default function App() {
   return (
@@ -14,6 +15,10 @@ export default function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />}></Route>
+        <Route path="/SignIn" element={<SignIn />}></Route>
+        <Route path="/SignUp" element={<SignUp />}></Route>
+        <Route path="/MovieDetail" element={<MovieDetail />}></Route>
+        <Route path="/Cinemas" element={<Cinemas />}></Route>
       </Routes>
       <Footer />
     </BrowserRouter>

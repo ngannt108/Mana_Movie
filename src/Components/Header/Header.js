@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { StoreContext } from "../../Redux/Store/Store";
+import './Header.css';
 
 export default function Header() {
   const store = useContext(StoreContext);
@@ -43,7 +44,7 @@ export default function Header() {
             {/* Navbar links */}
             <div className="collapse navbar-collapse" id="collapsibleNavbar">
               <ul className="navbar-nav ml-auto text-nowrap">
-                <li className="nav-item active">
+                <li className="nav-item">
                   <Link className="nav-link" to="/">
                     Home
                   </Link>
@@ -54,8 +55,8 @@ export default function Header() {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="#">
-                    Shortcodes
+                  <Link className="nav-link" to="/Cinemas">
+                    Cinemas
                   </Link>
                 </li>
                 <li className="nav-item">
@@ -63,10 +64,11 @@ export default function Header() {
                     News
                   </Link>
                 </li>
-                <li className="nav-item">
+                
                   {userName ? (
-                    <div className="dropdown">
-                      <h1>{userName}</h1>
+                    <li className="nav-item LoggedIn">
+                    <div style={{marginTop : '20px'}} className="dropdown ">
+                      <Link>{userName.split('@gmail.com')}</Link>
                       <div className="dropdown-content">
                         <Link
                           onClick={() =>
@@ -77,16 +79,19 @@ export default function Header() {
                           }
                           to="/"
                         >
-                          ĐĂNG XUẤT
+                          LOG OUT
                         </Link>
                       </div>
                     </div>
+                    </li>
                   ) : (
-                    <Link className="nav-link" to="/SignIn">
+                    <li className="nav-link un-login">
+                      <Link to="/SignIn">
                       Log in
                     </Link>
+                    </li>
                   )}
-                </li>
+                
               </ul>
             </div>
           </nav>
