@@ -26,9 +26,9 @@ export default function Home() {
   return (
     <>
       <Carousel />
-      <NewIn />
+       <NewIn />
       <Soon />
-      <Cinemas />
+      
     </>
   );
 }

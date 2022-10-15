@@ -50,7 +50,6 @@ module.exports = {
             let data = {};
             let apiFilmId = req.query.apiFilmId;
             let date = req.query.date;
-            let cineplex = req.query.cineplex;
 
             await fetch(`https://webmomoapi.momo.vn/api/ci-film/session/${apiFilmId}?apiCityId=50&date=${date}`)
                 .then(res => res.json())
@@ -72,6 +71,22 @@ module.exports = {
 
             res.send(data);
         } catch (error) {
+            res.sendStatus(500);
+        }
+    },
+    GetMovieDetail: async (req, res) => {
+        try {
+            let date = new Date();
+            let apiFilmId = req.query.apiFilmId;
+            let data = [];
+
+            await fetch(`https://webmomoapi.momo.vn/api/ci-film/paging?pageIndex=0&year=${date.getFullYear()}&PageSize=1000`)
+                .then(res => res.json())
+                .then(json => data = json.Data.Items)
+
+            res.send(data.filter(n => n.ApiFilmId === apiFilmId));
+        } catch (error) {
+            console.log(error);
             res.sendStatus(500);
         }
     }

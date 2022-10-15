@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import { StoreContext } from "../../Redux/Store/Store";
+import './Soon.css';
 
 export default function Soon() {
   const store = useContext(StoreContext);
@@ -9,7 +10,7 @@ export default function Soon() {
     dots: false,
     infinite: true,
     speed: 300,
-    slidesToShow: 4,
+    slidesToShow: 5,
     slidesToScroll: 1,
     responsive: [
       {
@@ -44,19 +45,20 @@ export default function Soon() {
       <div className="newin__content pt-4">
         <Slider {...setting} className="text-center">
           {store.ComingMovie.listMovie?.map((movie, index) => (
-            <div key={index} className="col-md-9">
+            <div className="soon-width">
+              <div key={index} className="col-md-9">
               <div className="newin__item">
                 <img className="img-fluid" src={movie.GraphicUrl} alt="" />
                 <div className="newin__layout d-flex justify-content-center align-items-center">
                   <div className="text-center text-white">
-                    <Link
+                    {/* <Link
                       to={movie.TrailerUrl}
                       data-vbtype="video"
                       className="venobox play vbox-item"
                       tabIndex="0"
                     >
                       <i className="fa fa-play"></i>
-                    </Link>
+                    </Link> */}
                     <br />
                     <Link to="#" className="read-more" tabIndex="0">
                       Read more
@@ -69,6 +71,7 @@ export default function Soon() {
               <div className="movie-detail">
                 <div className="movie-rating">{movie.ApiRating}</div>
               </div>
+            </div>
             </div>
           ))}
         </Slider>
