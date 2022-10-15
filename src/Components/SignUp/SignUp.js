@@ -1,11 +1,9 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../SignIn/SignIn.css";
-import { StoreContext } from "../../Redux/Store/Store";
 import { API_ACCOUNTS } from "../../Common/ApiController";
 
 export default function SignUp() {
-  const store = useContext(StoreContext);
   const [email, setEmail] = useState({
     email: "",
     messError: "",

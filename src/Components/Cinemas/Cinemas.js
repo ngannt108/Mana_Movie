@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Cinemas.css";
 import VideoPopUp from "../VideoPopUp/VideoPopUp";
+import { API_CINEMA } from "../../Common/ApiController";
 
 export default function Cinemas() {
   //Các biến để xử lý việc chọn loại rạp
@@ -40,7 +41,7 @@ export default function Cinemas() {
   // Chỉ chạy dữ liệu lấy logo rạp 1 lần
   useEffect(() => {
     setCurentDate(date);
-    fetch("http://localhost:3001/Cinema")
+    fetch(API_CINEMA.CLUSTER)
       .then((res) => res.json())
       .then((dt) => setCinemas(dt));
   }, [date]);
@@ -49,7 +50,7 @@ export default function Cinemas() {
   useEffect(() => {
     if (branchId !== null) {
       fetch(
-        `http://localhost:3001/cinema/branch?cineplex=${branchId}&lastIndex=0&count=${pageCount}`
+        `${API_CINEMA.CLUSTER}/branch?cineplex=${branchId}&lastIndex=0&count=${pageCount}`
       )
         .then((res) => res.json())
         .then((dt) => {
@@ -69,12 +70,12 @@ export default function Cinemas() {
       setTotalIems(null);
       setCurentDate(date);
     }
-  }, [branchId,date]);
+  }, [branchId, date]);
 
   useEffect(() => {
     if (cineplex && ApiCinemaId) {
       fetch(
-        `http://localhost:3001/cinema/branch/schedule?apiCinemaId=${ApiCinemaId}&cineplex=${cineplex}&date=2022-${currentDate}`
+        `${API_CINEMA.CLUSTER}/branch/schedule?apiCinemaId=${ApiCinemaId}&cineplex=${cineplex}&date=2022-${currentDate}`
       )
         .then((res) => res.json())
         .then((dt) => {
@@ -182,18 +183,28 @@ export default function Cinemas() {
                       <p>{film.SynopsisEn}</p>
                       <div className="rating-row">
                         <div className="film-rating">{film.ApiRating}</div>
-                        <div className="film-trailer"><VideoPopUp link={film.TrailerUrl.replace('watch?v=','embed/')}/></div>
+                        <div className="film-trailer">
+                          <VideoPopUp
+                            link={film.TrailerUrl.replace("watch?v=", "embed/")}
+                          />
+                        </div>
                         {/* <span>{films.Films[i].VersionsCaptions[0].ShowTimes[0].Duration} mins</span> */}
                       </div>
-                     
+
                       <div className="row">
                         <div className="date__time col-md-10">
                           <i className="far fa-clock"></i>
                           <span>VIEWING TIMES</span>
                           <div>
-                          {film.VersionsCaptions[0].ShowTimes.map((showTime,i)=>{
-                           return <span className="time" key={i}>{showTime.ShowTime.slice(11,16)}</span>
-                          })}
+                            {film.VersionsCaptions[0].ShowTimes.map(
+                              (showTime, i) => {
+                                return (
+                                  <span className="time" key={i}>
+                                    {showTime.ShowTime.slice(11, 16)}
+                                  </span>
+                                );
+                              }
+                            )}
                           </div>
                         </div>
                         {/* <div className="date__min col-md-2 text-right">

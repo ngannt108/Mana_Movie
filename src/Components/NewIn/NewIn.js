@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Slider from "react-slick";
 import { StoreContext } from "../../Redux/Store/Store";
 
@@ -7,6 +7,7 @@ export default function NewIn() {
   const store = useContext(StoreContext);
   const [nav1, setNav1] = useState();
   const [nav2, setNav2] = useState();
+  const navigate = useNavigate();
 
   var sliderFor = {
     slidesToShow: 1,
@@ -73,7 +74,8 @@ export default function NewIn() {
                       <p className="pr-5 movie-decription">
                         {movie.SynopsisEn}
                       </p>
-                      <Link to="#">More info </Link>
+                      <p>{movie.ApiFilmId}</p>
+                      <Link to={"/Movie/" + movie.ApiFilmId}>More info </Link>
                     </div>
                     <div
                       style={{

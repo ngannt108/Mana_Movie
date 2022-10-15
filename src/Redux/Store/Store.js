@@ -5,6 +5,7 @@ export const StoreContext = createContext(null);
 const Store = ({ children }) => {
   const [coming, DispatchComingMovie] = MoviesReducer();
   const [showing, DispatchShowingMovie] = MoviesReducer();
+  const [detail, DispatchDetail] = MoviesReducer();
   const [account, DispatchAccount] = AccountsReducer(null);
   const store = {
     ComingMovie: coming,
@@ -13,6 +14,8 @@ const Store = ({ children }) => {
     ShowingDispatch: DispatchShowingMovie,
     userAccount: account,
     AccountDispatch: DispatchAccount,
+    MovieDetail: detail,
+    MovieDetailDispatch: DispatchDetail,
   };
   return (
     <StoreContext.Provider value={store}>{children}</StoreContext.Provider>
