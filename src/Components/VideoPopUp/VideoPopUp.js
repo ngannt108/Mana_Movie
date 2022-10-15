@@ -1,7 +1,7 @@
-import React,{useState} from 'react';
+import React, { useState } from "react";
 import { IoCloseOutline } from "react-icons/io5";
 import { BiLoaderAlt } from "react-icons/bi";
-import "./VideoPopUp.css"
+import "./VideoPopUp.css";
 
 export default function VideoPopUp(props) {
     const [modal, setModal] = useState(false);
@@ -18,7 +18,7 @@ export default function VideoPopUp(props) {
     return (
       <div className="Modal">
         <button onClick={openModal}>
-          <img height={40} src="https://dovu.vn/wp-content/uploads/2021/07/icon-youtube.png"/>
+          <img width={60} src="https://www.freepnglogos.com/uploads/youtube-logo-icon-transparent---32.png"/>
           Trailer
         </button>
         {modal ? (
@@ -45,7 +45,7 @@ export default function VideoPopUp(props) {
                       loading="lazy"
                       width="800"
                       height="500"
-                      src={props.link.replace('watch?v=','embed/')}
+                      src={props.link}
                       title="YouTube video player"
                       frameBorder="0"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
