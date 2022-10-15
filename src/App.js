@@ -3,10 +3,10 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Header from "./Components/Header/Header.js";
 import Home from "./Components/Home/Home";
+import Movies from "./Components/Movies/Movies";
 import SignIn from "./Components/SignIn/SignIn";
 import SignUp from "./Components/SignUp/SignUp";
 import Footer from "./Components/Footer/Footer";
-import MovieDetail from "./Components/MovieDetail/MovieDetail";
 
 export default function App() {
   return (
@@ -14,6 +14,9 @@ export default function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />}></Route>
+        <Route path="/SignIn" element={<SignIn />}></Route>
+        <Route path="/SignUp" element={<SignUp />}></Route>
+        <Route path="/Movie/*" element={<Movies />}></Route>
       </Routes>
       <Footer />
     </BrowserRouter>

@@ -1,30 +1,12 @@
-import React, { useEffect, useContext } from "react";
-import Soon from "../Soon/Soon";
-import NewIn from "../NewIn/NewIn";
-import { StoreContext } from "../../Redux/Store/Store";
-import { API_MOVIE } from "../../Common/ApiController";
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import MovieDetail from "../MovieDetail/MovieDetail";
 export default function Movies() {
-  const store = useContext(StoreContext);
-  useEffect(() => {
-    fetch(API_MOVIE.MOVIE)
-      .then((res) => res.json())
-      .then((dt) => {
-        store.ShowingDispatch({
-          type: "NOW",
-          payload: dt.now,
-        });
-        store.ComingDispatch({
-          type: "SOON",
-          payload: dt.soon,
-        });
-      });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   return (
     <>
-      <NewIn />
-      <Soon />
+      <Routes>
+        <Route path="/:ApiFilmId" element={<MovieDetail />}></Route>
+      </Routes>
     </>
   );
 }
