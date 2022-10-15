@@ -12,9 +12,9 @@ export default function Header() {
   return (
     <>
       {/* header */}
-      <header id="header__run">
+      <header style={{paddingTop : '32px'}} id="header__run">
         <div className="container-xl">
-          <div className="heading text-right text-white">
+          {/* <div className="heading text-right text-white">
             <a
               href="tel:03301234567"
               className="text-white small font-weight-bold"
@@ -23,7 +23,7 @@ export default function Header() {
               <span className="pl-1 pr-2"> 0330 123 4567</span>
               <i className="pl-2 fa fa-search"></i>
             </a>
-          </div>
+          </div> */}
           {/* navbar */}
           <nav className="navbar navbar-expand-md navbar-dark">
             {/* Brand */}

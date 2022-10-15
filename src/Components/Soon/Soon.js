@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import { StoreContext } from "../../Redux/Store/Store";
+import './Soon.css';
 
 export default function Soon() {
   const store = useContext(StoreContext);
@@ -44,7 +45,8 @@ export default function Soon() {
       <div className="newin__content pt-4">
         <Slider {...setting} className="text-center">
           {store.ComingMovie.listMovie?.map((movie, index) => (
-            <div key={index} className="col-md-9">
+            <div className="soon-width">
+              <div key={index} className="col-md-9">
               <div className="newin__item">
                 <img className="img-fluid" src={movie.GraphicUrl} alt="" />
                 <div className="newin__layout d-flex justify-content-center align-items-center">
@@ -69,6 +71,7 @@ export default function Soon() {
               <div className="movie-detail">
                 <div className="movie-rating">{movie.ApiRating}</div>
               </div>
+            </div>
             </div>
           ))}
         </Slider>
