@@ -487,15 +487,16 @@ body {
     text-transform: uppercase;
     color: #4a4a4a;
   }
-  .date__time span.time {
+  .date__time .time {
     display: inline-block;
     margin: 8px 8px 8px 0;
     font-size: 14px;
     padding: 7px 10px;
     letter-spacing: 2px;
     color: #717171;
-    border-radius: 5px;
+    border-radius: 6px;
     background-color: #d8d8d8;
+    border: 1px solid white !important;
   }
   .date__time span.past {
     filter: brightness(110%);

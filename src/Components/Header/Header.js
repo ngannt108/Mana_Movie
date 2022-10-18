@@ -51,7 +51,7 @@ export default function Header() {
                 </li>
                 <li className="nav-item">
                   <Link className="nav-link" to="#">
-                    What's on
+                    Movie
                   </Link>
                 </li>
                 <li className="nav-item">

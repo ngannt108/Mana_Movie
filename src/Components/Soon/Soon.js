@@ -45,8 +45,8 @@ export default function Soon() {
       <div className="newin__content pt-4">
         <Slider {...setting} className="text-center">
           {store.ComingMovie.listMovie?.map((movie, index) => (
-            <div className="soon-width">
-              <div key={index} className="col-md-9">
+            <div key={index} className="soon-width">
+              <div  className="col-md-9">
               <div className="newin__item">
                 <img className="img-fluid" src={movie.GraphicUrl} alt="" />
                 <div className="newin__layout d-flex justify-content-center align-items-center">

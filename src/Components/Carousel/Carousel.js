@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { StoreContext } from "../../Redux/Store/Store";
-import VideoPopUp from "../VideoPopUp/VideoPopUp";
+import VideoPopUp from "../VideoPopUp2/VideoPopUp2";
 import './Carousel.css'
 
 export default function Carousel() {

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { IoCloseOutline } from "react-icons/io5";
 import { BiLoaderAlt } from "react-icons/bi";
-import "./VideoPopUp.css";
+import "./VideoPopUp2.css";
 
-export default function VideoPopUp(props) {
+export default function VideoPopUp2W(props) {
     const [modal, setModal] = useState(false);
     const [videoLoading, setVideoLoading] = useState(true);
   
@@ -16,10 +16,9 @@ export default function VideoPopUp(props) {
     };
   
     return (
-      <div className="Modal">
-        <button onClick={openModal}>
-          <img width={60} src="https://www.freepnglogos.com/uploads/youtube-logo-icon-transparent---32.png"/>
-          Trailer
+      <div className="">
+        <button className="fa fa-play button-round" onClick={openModal}>
+            {/* <img width={40} src="https://toppng.com/uploads/preview/lay-icon-play-icon-11563266312mklxafh8gy.png" alt=""/> */}
         </button>
         {modal ? (
             <section className="modal__bg">

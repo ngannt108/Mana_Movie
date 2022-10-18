@@ -1,9 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "./Cinemas.css";
 import VideoPopUp from "../VideoPopUp/VideoPopUp";
+import ModalBookingPopUp from "../ModalBookingPopUp/ModalBookingPopUp";
+import ModalSignInPopUp from "../ModalSignInPopUp/ModalSignInPopUp";
 import { API_CINEMA } from "../../Common/ApiController";
+import { StoreContext } from "../../Redux/Store/Store";
 
 export default function Cinemas() {
+  const store = useContext(StoreContext);
+
   //Các biến để xử lý việc chọn hãng rạp
   const [cinemaLogos, setCinemas] = useState(null);
   const [branchId, setbranchId] = useState(null);
@@ -68,7 +73,7 @@ export default function Cinemas() {
       setTotalIems(null);
       setCurentDate(date);
     }
-  }, [branchId]);
+  }, [branchId, date]);
 
   useEffect(() => {
     if (cineplex && ApiCinemaId) {
@@ -88,7 +93,7 @@ export default function Cinemas() {
         <img
           width={"100%"}
           alt="cinemas wallpaper"
-          src="https://wallpapercave.com/wp/wp4016023.jpg"
+          src="https://png.pngtree.com/thumb_back/fh260/back_our/20190621/ourmid/pngtree-leisure-time-cinema-watching-movie-background-image_195506.jpg?fbclid=IwAR3vi9xD-j841wN_7OhyoyVQpoYqMS42q0wlc7TfLTY80LMATSHpCglQGVw"
         />
       </div>
       <section id="date" className="container">
@@ -170,15 +175,15 @@ export default function Cinemas() {
                           key={i}
                         >
                           <div>
-                            {date.slice(8, 10)}-{date.slice(5, 7)}
+                            {date.slice(8, 10)}/{date.slice(5, 7)}
                           </div>
                         </div>
                       );
                     })}
                   </div>
                   <h3 style={{ margin: "28px" }}>
-                    Lịch chiếu phim rạp {cinemaName} ngày{" "}
-                    {currentDate.slice(3, 6)}-{currentDate.slice(0, 2)}
+                    Lịch chiếu phim {cinemaName} ngày{" "}
+                    {currentDate.slice(3, 5) + "/" + currentDate.slice(0, 2)}
                   </h3>
                   {films.Films.map((film, i) => (
                     <div key={i} className="date__item row">
@@ -196,9 +201,13 @@ export default function Cinemas() {
                         <div className="rating-row">
                           <div className="film-rating">{film.ApiRating}</div>
                           <div className="film-trailer">
-                            <VideoPopUp link={film.TrailerUrl} />
+                            <VideoPopUp
+                              link={film.TrailerUrl.replace(
+                                "watch?v=",
+                                "embed/"
+                              )}
+                            />
                           </div>
-                          {/* <span>{films.Films[i].VersionsCaptions[0].ShowTimes[0].Duration} mins</span> */}
                         </div>
 
                         <div className="row">
@@ -209,28 +218,40 @@ export default function Cinemas() {
                               {film.VersionsCaptions[0].ShowTimes.map(
                                 (showTime, i) => {
                                   return (
-                                    <span
-                                      onClick={() => {
-                                        console.log(
-                                          `Bạn có muốn đặt vé xem phim ${
-                                            film.Title
-                                          } tại rạp ${cinemaName}  vào lúc ${showTime.ShowTime.slice(
-                                            11,
-                                            16
-                                          )} ngày ${currentDate.slice(
-                                            3,
-                                            6
-                                          )} tháng ${currentDate.slice(
-                                            0,
-                                            2
-                                          )} không? ${branchId} ${ApiCinemaId}`
-                                        );
-                                      }}
-                                      className="time"
+                                    <div
+                                      style={{ display: "inline-block" }}
                                       key={i}
                                     >
-                                      {showTime.ShowTime.slice(11, 16)}
-                                    </span>
+                                      <div
+                                        style={{ display: "inline-block" }}
+                                        onClick={() => {
+                                          store.BookingDispatch({
+                                            type: "BOOKING",
+                                            payload: [
+                                              cinemaName,
+                                              film.Title,
+                                              showTime.ShowTime.slice(11, 16),
+                                              currentDate.slice(3, 5) +
+                                                "/" +
+                                                currentDate.slice(0, 2),
+                                              film.GraphicUrl,
+                                            ],
+                                          });
+                                        }}
+                                      >
+                                        {store.userAccount.account ?  <ModalBookingPopUp
+                                          info={[
+                                            cinemaName,
+                                            film.Title,
+                                            showTime.ShowTime.slice(11, 16),
+                                            currentDate.slice(3, 5) +
+                                              "/" +
+                                              currentDate.slice(0, 2),
+                                          ]}
+                                        /> : <ModalSignInPopUp info={showTime.ShowTime.slice(11, 16)}/>}
+                                       
+                                      </div>
+                                    </div>
                                   );
                                 }
                               )}
