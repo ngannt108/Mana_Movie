@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
@@ -15,13 +16,13 @@ export default function Footer() {
               <h2>Get in touch</h2>
               <ul>
                 <li>
-                  <a href="#">FAQs</a>
+                  <Link to="#">FAQs</Link>
                 </li>
                 <li>
-                  <a href="#">Give us feedback</a>
+                  <Link to="#">Give us feedback</Link>
                 </li>
                 <li>
-                  <a href="#">Contact us</a>
+                  <Link to="#">Contact us</Link>
                 </li>
               </ul>
             </div>
@@ -29,16 +30,16 @@ export default function Footer() {
               <h2>About Movie star</h2>
               <ul>
                 <li>
-                  <a href="#">About us</a>
+                  <Link to="#">About us</Link>
                 </li>
                 <li>
-                  <a href="#">Find us</a>
+                  <Link to="#">Find us</Link>
                 </li>
                 <li>
-                  <a href="#">Schedule</a>
+                  <Link to="#">Schedule</Link>
                 </li>
                 <li>
-                  <a href="#">News</a>
+                  <Link to="#">News</Link>
                 </li>
               </ul>
             </div>
@@ -46,13 +47,13 @@ export default function Footer() {
               <h2>Legal stuff</h2>
               <ul>
                 <li>
-                  <a href="#">Terms & Conditions</a>
+                  <Link to="#">Terms & Conditions</Link>
                 </li>
                 <li>
-                  <a href="#">Privacy policy</a>
+                  <Link to="#">Privacy policy</Link>
                 </li>
                 <li>
-                  <a href="#">Cookie policy</a>
+                  <Link to="#">Cookie policy</Link>
                 </li>
               </ul>
             </div>
@@ -60,22 +61,22 @@ export default function Footer() {
               <h2>Connect with us</h2>
               <ul>
                 <li>
-                  <a href="#">
+                  <Link to="#">
                     <i className="fab fa-facebook-f"></i>
                     Facebook
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#">
+                  <Link to="#">
                     <i className="fab fa-twitter"></i>
                     Twitter
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#">
+                  <Link to="#">
                     <i className="fab fa-google-plus-g"></i>
                     Google +
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -84,10 +85,9 @@ export default function Footer() {
         <div className="about__bottom container-xl text-left">
           <p>
             2017 © Movie Star /
-            <a href="https://www.klevermedia.co.uk/">
-              {" "}
+            <Link to="https://www.klevermedia.co.uk/">
               Web design by Klever media
-            </a>
+            </Link>
           </p>
         </div>
       </div>

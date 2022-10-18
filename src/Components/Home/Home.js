@@ -1,7 +1,6 @@
 import React, { useEffect, useContext } from "react";
 import { StoreContext } from "../../Redux/Store/Store";
 import Carousel from "../Carousel/Carousel";
-import Cinemas from "../Cinemas/Cinemas";
 import NewIn from "../NewIn/NewIn";
 import Soon from "../Soon/Soon";
 import { API_MOVIE } from "../../Common/ApiController";
@@ -26,9 +25,8 @@ export default function Home() {
   return (
     <>
       <Carousel />
-       <NewIn />
+      <NewIn />
       <Soon />
-      
     </>
   );
 }

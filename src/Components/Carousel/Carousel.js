@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
 import { StoreContext } from "../../Redux/Store/Store";
 import VideoPopUp from "../VideoPopUp2/VideoPopUp2";
 import './Carousel.css'
@@ -8,7 +7,7 @@ export default function Carousel() {
   const store = useContext(StoreContext);
   return (
     // Carousel
-      <div id="demo" className="carousel slide" data-ride="carousel">
+    <div id="demo" className="carousel slide" data-ride="carousel">
       {/* Indicators */}
       <ul className="carousel-indicators">
         <li data-target="#demo" data-slide-to="0" className="active"></li>
@@ -38,8 +37,12 @@ export default function Carousel() {
                     {store.ShowingMovie.listMovie[0].SynopsisEn}
                   </p>
                   <div className="carousel-trailer">
-                    <span className="carousel__span">{store.ShowingMovie.listMovie[0].ApiRating}</span>
-                    <VideoPopUp link={store.ShowingMovie.listMovie[0].TrailerUrl}/>
+                    <span className="carousel__span">
+                      {store.ShowingMovie.listMovie[0].ApiRating}
+                    </span>
+                    <VideoPopUp
+                      link={store.ShowingMovie.listMovie[0].TrailerUrl}
+                    />
                   </div>
                 </div>
               </div>
@@ -71,7 +74,7 @@ export default function Carousel() {
                         <i className="fa fa-play"></i>
                         <span>Trailer</span>
                       </Link> */}
-                      <VideoPopUp link={movie.TrailerUrl}/>
+                      <VideoPopUp link={movie.TrailerUrl} />
                     </div>
                   </div>
                 </div>

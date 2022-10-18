@@ -1,9 +1,9 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import { StoreContext } from "../../Redux/Store/Store";
 import VideoPopUp2 from "../VideoPopUp2/VideoPopUp2";
-import './NewIn.css'
+import "./NewIn.css";
 
 export default function NewIn() {
   const store = useContext(StoreContext);
@@ -64,7 +64,9 @@ export default function NewIn() {
       <>
         <section id="comingsoon" className="dark">
           <div>
-            <div className="newin-popup"><VideoPopUp2 link={link} /></div>
+            <div className="newin-popup">
+              <VideoPopUp2 link={link} />
+            </div>
             <Slider
               asNavFor={nav2}
               ref={(slider1) => setNav1(slider1)}
@@ -96,7 +98,7 @@ export default function NewIn() {
                         </div>
                         <div
                           style={{
-                            background: `url(${movie.GraphicUrl})`,
+                            background: url(${movie.GraphicUrl}),
                             height: "600px",
                           }}
                           className="comingsoon__right item1 col-6"

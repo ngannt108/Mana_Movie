@@ -8,6 +8,10 @@ function GetMovies(state, { type, payload }) {
       return { ...state };
     case "DETAIL":
       return { ...state, detail: payload };
+    case "COMMENT":
+      return { ...state, comment: payload };
+    case "SCHEDULE":
+      return { ...state, schedule: payload };
     default:
       return state;
   }

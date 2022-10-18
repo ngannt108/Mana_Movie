@@ -4,6 +4,8 @@ const API_DOMAIN = "http://localhost:3003/";
 export const API_MOVIE = {
   MOVIE: API_DOMAIN + "movie",
   DETAIL: API_DOMAIN + "movie/detail?apiFilmId=",
+  COMMENT: API_DOMAIN + "movie/comment?apiFilmId=",
+  SCHEDULE: API_DOMAIN + "movie/schedule?apiFilmId=",
 };
 
 export const API_CINEMA = {

@@ -9,6 +9,8 @@ const Store = ({ children }) => {
   const [showing, DispatchShowingMovie] = MoviesReducer();
   const [detail, DispatchDetail] = MoviesReducer();
   const [account, DispatchAccount] = AccountsReducer(null);
+  const [cmt, DispatchComment] = MoviesReducer();
+  const [schedule, DispatchSchedule] = MoviesReducer();
   const [booking, DispatchBooking]= BookingReducer(null);
 
   const store = {
@@ -21,7 +23,11 @@ const Store = ({ children }) => {
     MovieDetail: detail,
     MovieDetailDispatch: DispatchDetail,
     Booking : booking,
-    BookingDispatch : DispatchBooking
+    BookingDispatch : DispatchBooking,
+    Comment: cmt,
+    CommentDispatch: DispatchComment,
+    Showtime: schedule,
+    ShowtimeDispatch: DispatchSchedule,
   };
   return (
     <StoreContext.Provider value={store}>{children}</StoreContext.Provider>
