@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import { StoreContext } from "../../Redux/Store/Store";
-import './Soon.css';
+import "./Soon.css";
 
 export default function Soon() {
   const store = useContext(StoreContext);
@@ -45,13 +45,13 @@ export default function Soon() {
       <div className="newin__content pt-4">
         <Slider {...setting} className="text-center">
           {store.ComingMovie.listMovie?.map((movie, index) => (
-            <div className="soon-width">
-              <div key={index} className="col-md-9">
-              <div className="newin__item">
-                <img className="img-fluid" src={movie.GraphicUrl} alt="" />
-                <div className="newin__layout d-flex justify-content-center align-items-center">
-                  <div className="text-center text-white">
-                    {/* <Link
+            <div key={index} className="soon-width">
+              <div className="col-md-9">
+                <div className="newin__item">
+                  <img className="img-fluid" src={movie.GraphicUrl} alt="" />
+                  <div className="newin__layout d-flex justify-content-center align-items-center">
+                    <div className="text-center text-white">
+                      {/* <Link
                       to={movie.TrailerUrl}
                       data-vbtype="video"
                       className="venobox play vbox-item"
@@ -59,19 +59,25 @@ export default function Soon() {
                     >
                       <i className="fa fa-play"></i>
                     </Link> */}
-                    <br />
-                    <Link to="#" className="read-more" tabIndex="0">
-                      Read more
-                    </Link>
-                    <span className="date">Released: {movie.OpeningDate}</span>
+                      <br />
+                      <Link
+                        to={"/Movie/" + movie.ApiFilmId}
+                        className="read-more"
+                        tabIndex="0"
+                      >
+                        Read more
+                      </Link>
+                      <span className="date">
+                        Released: {movie.OpeningDate.slice(0, 10)}
+                      </span>
+                    </div>
                   </div>
                 </div>
+                <h1 className="movie-name">{movie.Title}</h1>
+                <div className="movie-detail">
+                  <div className="movie-rating">{movie.ApiRating}</div>
+                </div>
               </div>
-              <h1 className="movie-name">{movie.Title}</h1>
-              <div className="movie-detail">
-                <div className="movie-rating">{movie.ApiRating}</div>
-              </div>
-            </div>
             </div>
           ))}
         </Slider>

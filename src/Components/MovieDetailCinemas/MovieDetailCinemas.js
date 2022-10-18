@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from "react";
-import "./Cinemas.css";
+import React, { useEffect, useState, useContext } from "react";
+import "./MovieDetailCinemas.css";
 import VideoPopUp from "../VideoPopUp/VideoPopUp";
 import { API_CINEMA } from "../../Common/ApiController";
+import { StoreContext } from "../../Redux/Store/Store";
 
-export default function Cinemas() {
+export default function Cinemas(props) {
   //Các biến để xử lý việc chọn hãng rạp
+  const store = useContext(StoreContext);
+
   const [cinemaLogos, setCinemas] = useState(null);
   const [branchId, setbranchId] = useState(null);
   const [cinemaList, setCinemaList] = useState(null);
@@ -87,13 +90,6 @@ export default function Cinemas() {
 
   return (
     <>
-      <div className="cinemas-wallpaper">
-        <img
-          width={"100%"}
-          alt="cinemas wallpaper"
-          src="https://wallpapercave.com/wp/wp4016023.jpg"
-        />
-      </div>
       <section id="date" className="container">
         <div className="row">
           {/* Nav pills */}
@@ -107,7 +103,7 @@ export default function Cinemas() {
                     className="nav-item"
                   >
                     <a className="nav-link" data-toggle="pill" href="#film">
-                      <img width={80} alt="" src={cinema.Logo} />
+                      <img width={56} alt="" src={cinema.Logo} />
                     </a>
                   </li>
                 ))}
@@ -178,38 +174,17 @@ export default function Cinemas() {
                     })}
                   </div>
                   <h3 style={{ margin: "28px" }}>
-                    Lịch chiếu phim {cinemaName} ngày {currentDate}
+                    {cinemaName} ngày {currentDate}
                   </h3>
-                  {films.Films.map((film, i) => (
+                  {films.Films.filter((film) => {
+                    return film.Title === store.MovieDetail.detail.Title;
+                  }).map((film, i) => (
                     <div key={i} className="date__item row">
-                      <a className="col-md-2" href="#">
-                        <img
-                          className="img-fluid"
-                          src={film.GraphicUrl}
-                          alt=""
-                        />
-                      </a>
                       <div className="col-md-10">
-                        <h1>{film.ApiGenreName}</h1>
-                        <h2>{film.Title}</h2>
-                        <p>{film.SynopsisEn}</p>
-                        <div className="rating-row">
-                          <div className="film-rating">{film.ApiRating}</div>
-                          <div className="film-trailer">
-                            <VideoPopUp
-                              link={film.TrailerUrl.replace(
-                                "watch?v=",
-                                "embed/"
-                              )}
-                            />
-                          </div>
-                          {/* <span>{films.Films[i].VersionsCaptions[0].ShowTimes[0].Duration} mins</span> */}
-                        </div>
+                        <div className="rating-row"></div>
 
                         <div className="row">
                           <div className="date__time col-md-10">
-                            <i className="far fa-clock"></i>
-                            <span>VIEWING TIMES</span>
                             <div>
                               {film.VersionsCaptions[0].ShowTimes.map(
                                 (showTime, i) => {
