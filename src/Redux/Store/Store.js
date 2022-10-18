@@ -6,6 +6,8 @@ const Store = ({ children }) => {
   const [coming, DispatchComingMovie] = MoviesReducer();
   const [showing, DispatchShowingMovie] = MoviesReducer();
   const [detail, DispatchDetail] = MoviesReducer();
+  const [cmt, DispatchComment] = MoviesReducer();
+  const [schedule, DispatchSchedule] = MoviesReducer();
   const [account, DispatchAccount] = AccountsReducer(null);
   const store = {
     ComingMovie: coming,
@@ -16,6 +18,10 @@ const Store = ({ children }) => {
     AccountDispatch: DispatchAccount,
     MovieDetail: detail,
     MovieDetailDispatch: DispatchDetail,
+    Comment: cmt,
+    CommentDispatch: DispatchComment,
+    Showtime: schedule,
+    ShowtimeDispatch: DispatchSchedule,
   };
   return (
     <StoreContext.Provider value={store}>{children}</StoreContext.Provider>

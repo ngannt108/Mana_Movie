@@ -7,7 +7,6 @@ import Movies from "./Components/Movies/Movies";
 import SignIn from "./Components/SignIn/SignIn";
 import SignUp from "./Components/SignUp/SignUp";
 import Footer from "./Components/Footer/Footer";
-import MovieDetail from "./Components/MovieDetail/MovieDetail";
 import Cinemas from "./Components/Cinemas/Cinemas";
 
 export default function App() {

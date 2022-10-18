@@ -1,12 +1,21 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./MovieDetail.css";
 import { StoreContext } from "../../Redux/Store/Store";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { API_MOVIE } from "../../Common/ApiController";
+import MovieDetailCinemas from "../MovieDetailCinemas/MovieDetailCinemas";
 
 export default function MovieDetail() {
   const store = useContext(StoreContext);
   const { ApiFilmId } = useParams();
+
+  //Biến ngày giờ hiện tại
+  const current = new Date();
+  const date = `${current.getFullYear()}-${
+    current.getMonth() + 1
+  }-${current.getDate()}`;
+  const [currentDate, setCurentDate] = useState(null);
+
   useEffect(() => {
     if (ApiFilmId) {
       fetch(`${API_MOVIE.DETAIL + ApiFilmId}`)
@@ -16,11 +25,33 @@ export default function MovieDetail() {
             type: "DETAIL",
             payload: dt[0],
           });
-          // console.log(dt[0]);
+        });
+      fetch(`${API_MOVIE.COMMENT + ApiFilmId}`)
+        .then((res) => res.json())
+        .then((dt) => {
+          store.CommentDispatch({
+            type: "COMMENT",
+            payload: dt[0].Comment[0].Items,
+          });
         });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ApiFilmId]);
+
+  useEffect(() => {
+    if (ApiFilmId) {
+      setCurentDate(date);
+      fetch(`${API_MOVIE.SCHEDULE + ApiFilmId}&date=${currentDate}`)
+        .then((res) => res.json())
+        .then((dt) => {
+          store.ShowtimeDispatch({
+            type: "SCHEDULE",
+            payload: dt,
+          });
+        });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ApiFilmId, currentDate]);
   return (
     <>
       {store.MovieDetail.detail && (
@@ -70,16 +101,12 @@ export default function MovieDetail() {
                   <div className="movie-row">
                     <p className="movie-label">Release:</p>
                     <p className="label-info">
-                      {store.MovieDetail.detail.OpeningDate}
+                      {store.MovieDetail.detail.OpeningDate.slice(0, 10)}
                     </p>
                   </div>
-                  {/* <div className="movie-row">
-                    <p className="movie-label">Language:</p>
-                    <p className="label-info">English</p>
-                  </div> */}
                 </div>
                 <div className="movie-synopsis">
-                  <h1 className="synopsis-header">Synopsis</h1>
+                  <h1 className="synopsis-header">Description</h1>
                   <div className="synopsis-content">
                     {store.MovieDetail.detail.SynopsisEn}
                   </div>
@@ -89,86 +116,62 @@ export default function MovieDetail() {
           </div>
           <div className="movie-showtime">
             <h1 className="movie-showtime-header">Showtime</h1>
-            <div className="movie-dateTime-wrapper">
-              <div className="movie-dateTime-item">
-                <h1 className="movie-date">May 3, 2022</h1>
-                <p className="movie-time">09h50</p>
-                <p className="movie-time">09h50</p>
-                <p className="movie-time">09h50</p>
+            <section className="container">
+              <div className="row showtime-fields">
+                {/* Nav pills */}
+                {/* <div className="icon-cinemas">
+                  {store.Showtime.schedule &&
+                    store.Showtime.schedule.Cineplexs.map((cinema, index) => (
+                      <Link
+                        className="nav-link"
+                        data-toggle="pill"
+                        to="#film"
+                        key={index}
+                      >
+                        <img width={80} alt="" src={cinema.Logo} />
+                      </Link>
+                    ))}
+                </div> */}
+                {/* Tab panes */}
+                <MovieDetailCinemas
+                  movieName={store.MovieDetail.detail.Title}
+                />
               </div>
-              <div className="movie-dateTime-item">
-                <h1 className="movie-date">May 5, 2022</h1>
-                <p className="movie-time">09h50</p>
-                <p className="movie-time">09h50</p>
-                <p className="movie-time">09h50</p>
-              </div>
-              <div className="movie-dateTime-item">
-                <h1 className="movie-date">May 10, 2022</h1>
-                <p className="movie-time">09h50</p>
-                <p className="movie-time">09h50</p>
-                <p className="movie-time">09h50</p>
-              </div>
-            </div>
+            </section>
           </div>
-          <div className="movie-comment">
-            <h1 className="movie-comment-header">Comments</h1>
-            <div className="user-comment-wrapper">
-              <img
-                className="user-avatar"
-                width={60}
-                height={60}
-                alt=""
-                src="http://1.gravatar.com/avatar/1ff5f62ac7b7738ee62ea162c06b550e?s=104&d=mm&r=g"
-              />
-              <div className="user-comment">
-                <div className="user-name">Vinh Nam</div>
-                <div className="comment-day">October 13, 2022</div>
-                <div className="comment-content">phim dở</div>
+          {store.Comment.comment && (
+            <div className="movie-comment">
+              <h1 className="movie-comment-header">Comments</h1>
+              <div className="movie-comment-field">
+                {store.Comment.comment.map((cmt, index) => (
+                  <div key={index} className="user-comment-wrapper">
+                    {cmt.Avatar ? (
+                      <img
+                        className="user-avatar"
+                        width={60}
+                        height={60}
+                        alt=""
+                        src={cmt.Avatar}
+                      />
+                    ) : (
+                      <img
+                        className="user-avatar"
+                        width={60}
+                        height={60}
+                        alt=""
+                        src="http://1.gravatar.com/avatar/1ff5f62ac7b7738ee62ea162c06b550e?s=104&d=mm&r=g&fbclid=IwAR3USKhaAsLHI_CtOSjG6izRJH4xyjjhjPE1hEWiMm14mjr8fMTj8xwiAvE"
+                      />
+                    )}
+                    <div className="user-comment">
+                      <div className="user-name">{cmt.ShowName}</div>
+                      <div className="comment-day">{cmt.CreatedAt}</div>
+                      <div className="comment-content">{cmt.Comment}</div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
-            <div className="user-comment-wrapper">
-              <img
-                className="user-avatar"
-                width={60}
-                height={60}
-                alt=""
-                src="http://1.gravatar.com/avatar/1ff5f62ac7b7738ee62ea162c06b550e?s=104&d=mm&r=g"
-              />
-              <div className="user-comment">
-                <div className="user-name">Ngân Idol</div>
-                <div className="comment-day">October 13, 2022</div>
-                <div className="comment-content">phim hay</div>
-              </div>
-            </div>
-            <div className="user-comment-wrapper">
-              <img
-                className="user-avatar"
-                width={60}
-                height={60}
-                alt=""
-                src="http://1.gravatar.com/avatar/1ff5f62ac7b7738ee62ea162c06b550e?s=104&d=mm&r=g"
-              />
-              <div className="user-comment">
-                <div className="user-name">Linh sọp be</div>
-                <div className="comment-day">October 13, 2022</div>
-                <div className="comment-content">phim tàm tạm</div>
-              </div>
-            </div>
-            <div className="user-comment-wrapper">
-              <img
-                className="user-avatar"
-                width={60}
-                height={60}
-                alt=""
-                src="http://1.gravatar.com/avatar/1ff5f62ac7b7738ee62ea162c06b550e?s=104&d=mm&r=g"
-              />
-              <div className="user-comment">
-                <div className="user-name">Đạt G</div>
-                <div className="comment-day">October 13, 2022</div>
-                <div className="comment-content">phim cũng được</div>
-              </div>
-            </div>
-          </div>
+          )}
         </div>
       )}
     </>
