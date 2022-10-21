@@ -2,24 +2,23 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useNavigate } from "react-router-dom";
-import './ModalSignInPopUp.css'
+import './ModalPaymentPopUp.css'
 
-export default function ModalPopUp(props) {
+export default function ModalPaymentPopUp(props) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const navigate = useNavigate();
-  
-  const navigateSignIn = () =>{
-    navigate("/SignIn");
+  const navigatePayment = () =>{
+    navigate("/Payment");
   }
 
   return (
     <>
-      <Button className='time' onClick={handleShow}>
-       {props.info}
+      <Button className='booking-btn' onClick={handleShow}>
+        Payment
       </Button>
 
       <Modal
@@ -29,17 +28,17 @@ export default function ModalPopUp(props) {
         keyboard={false}
       >
         <Modal.Header>
-          <Modal.Title>Modal title</Modal.Title>
+          <Modal.Title>Payment</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-            Sorry but you haven't signed in yet. Please sign in before booking ticket for the movie!
+            Bạn có muốn thanh toán?
         </Modal.Body>
         <Modal.Footer>
-        <Button variant="danger" onClick={navigateSignIn}>
-            Go to Log In
+        <Button variant="warning" onClick={navigatePayment}>
+            Yes
           </Button>
           <Button variant="secondary" onClick={handleClose}>
-           Later
+            Later
           </Button>
         </Modal.Footer>
       </Modal>

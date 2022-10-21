@@ -23,6 +23,7 @@ export default function NewIn() {
     dots: true,
     centerMode: true,
     arrows: false,
+
     focusOnSelect: true,
     responsive: [
       {
@@ -98,7 +99,7 @@ export default function NewIn() {
                         </div>
                         <div
                           style={{
-                            background: url(${movie.GraphicUrl}),
+                            background: `url(${movie.GraphicUrl})`,
                             height: "600px",
                           }}
                           className="comingsoon__right item1 col-6"

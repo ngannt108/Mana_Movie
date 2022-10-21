@@ -1,94 +1,90 @@
-.tab-content {
-  display: flex;
-  font-size: 12px !important;
+.container-mdc {
+  margin: 0 !important;
 }
-.cinemas-list {
-  border-top: 1px solid lightgray;
-  border-right: 1px solid lightgray;
-  display: flex;
-  flex-direction: column;
-  padding: 48px 0 0 0px;
-  width: 300px;
+.show-time-mdc{
+  margin-top: 40px;
+  border: 1px solid lightgray;
+  border-radius: 12px;
+  padding: 0;
 }
-.cinemas-list-search {
+.border-top{
+  border-top: 1px solid lightgray ;
+  border-bottom: 1px solid lightgray ;
+}
+.logo-mdc{
+  display: flex;
+  justify-content: space-evenly;
+}
+.mess-mdc {
+  text-align: center;
+  padding: 20px 0;
+  font-size: 14px;
+}
+.nav-item-mdc {
+  width: 60px !important;
+}
+.cls-mdc {
   border-radius: 4px;
   border: 1px solid lightgray;
   margin: 0 0 20px 20px;
   padding: 4px;
   width: 80%;
+  font-size: 14px !important;
 }
-.cinemas-list-search:focus-visible {
+.cls-mdc:focus-visible {
   outline: none;
 }
-.onClick-cinema {
-  border-bottom: 1px solid lightgray;
+.week-mdc {
   display: flex;
-  justify-content: flex-start;
-  padding: 12px 0 12px 12px;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 15px;
 }
-.onClick-cinema:hover {
-  background-color: #fff0f6;
-}
-.onClick-cinema img {
-  margin-right: 16px;
-  border: 1px solid lightgray;
-  border-radius: 4px;
-  padding: 2px;
-}
-.onClick-cinema p {
-  font-size: 14px;
-  margin: 6px 0;
-}
-.message-empty {
-  text-align: center;
-  padding-bottom: 20px;
-}
-.show-more-btn {
-  background-color: #fff0f6;
-  border-radius: 16px;
-  border: 1px solid lightgray;
-  color: #dc4196;
-  margin: 16px 62px 16px 62px;
-  padding: 4px;
-  width: 60%;
-}
-.show-more-btn:hover {
-  background-color: #ffe6ef;
-}
-.show-more-btn:focus {
-  outline: none;
-}
-.week {
-  border-top: 1px solid lightgray;
-  display: flex;
-  justify-content: space-around;
-  width: 598px !important;
-}
-.day-wrapper {
+.dw-mdc {
   border: 1px solid lightgrey;
   border-radius: 12px;
   margin: 16px 0;
   padding: 8px;
+  font-size: 16px;
 }
-.day-wrapper:hover {
+.dw-mdc:hover {
   background: linear-gradient(to right, #fbbd61, #ec7532);
 }
-.dayInText,
-.dayInNumber {
-  text-align: center;
-}
-.rating-row {
-  display: flex;
-  margin: 24px 0;
-}
-.date__item {
-  width: 589px !important;
-  padding: 3rem 0 3rem 3rem;
+.date_item_mdc {
+  width: 639px;
   position: relative;
 }
-.date__item div p {
-  font-size: 14px !important;
+.date_item_mdc::before {
+  content: "";
+  display: block;
+  height: 1px;
+  width: 100%;
+  background-color: #717171;
+  filter: brightness(200%);
+  position: absolute;
+  top: 0;
+  left: 15px;
 }
-.date__item {
-  padding: 0 !important;
+.time-mdc {
+  padding: 12px;
+  width: 600px;
+}
+.cinemas-list-mdc {
+  border-right: 1px solid lightgray;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  height: 400px;
+  overflow: scroll;
+}
+.cinemas-list-search-mdc:focus-visible {
+  outline: none;
+}
+.active-mdc{
+  background: linear-gradient(to right, #fbbd61, #ec7532);
+}
+.cinema-address-mdc{
+  font-size: 16px;
+  padding: 20px;
+  width: 660px;
 }

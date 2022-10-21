@@ -1,15 +1,20 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "./Booking.css";
 import { StoreContext } from "../../Redux/Store/Store";
+import PaymentPopUp from "../ModalPaymentPopUp/ModalPaymentPopUp";
 
 export default function Booking() {
   const store = useContext(StoreContext);
-
+  let [count, setCount] = useState(0);
+  const date = `${store.Booking.booking[2]} - ${store.Booking.booking[3]}/2022`;
   const arrSeat = "ABCDEFGHI".split("");
   const arrSeatLeftNum = "01 02 03 04 05 06 07 08".split(" ");
   const arrSeatRightNum = "09 10 11 12".split(" ");
-  var count = 0;
-  var arrSelectedSeat = [];
+  var [arrSelectedSeat, setArr] = useState([]);
+
+  useEffect(()=>{
+    window.scrollTo(0,0)
+  },[])
 
   const checkSelected = (e) => {
     if (
@@ -17,12 +22,12 @@ export default function Booking() {
       !e.target.classList.contains("selected")
     ) {
       e.target.classList.add("selected");
-      arrSelectedSeat.push(e.target.innerText);
-      count++;
+      setArr([...arrSelectedSeat, e.target.innerText]);
+      setCount(count + 1);
     } else if (e.target.classList.contains("selected")) {
       e.target.classList.remove("selected");
       arrSelectedSeat.splice(arrSelectedSeat.indexOf(e.target.innerText), 1);
-      count--;
+      setCount(count - 1);
     }
   };
 
@@ -81,18 +86,28 @@ export default function Booking() {
                   <div className="choosing">Seat selecting</div>
                   <div className="busy">Seat have been selected</div>
                   <div style={{ paddingLeft: "12px" }}>
-                    1 ticket / 90.000 VND
+                    {count} ticket / {count * 90}.000 VND
                   </div>
-                  <div
-                    style={{ paddingLeft: "12px" }}
-                    onClick={() => {
-                      console.log(
-                        `Bạn đã đặt ${count} vé, tổng thanh toán ${count * 90000} bạn có muốn thanh toán ?`
-                      );
-                    }}
-                  >
-                    payment
-                  </div>
+                  {count === 0 ? (
+                    <div className="noClick" style={{ paddingLeft: "12px" }}>
+                      <PaymentPopUp />
+                    </div>
+                  ) : (
+                    <div
+                      onClick={() => {
+                        store.PaymentDisPatch({
+                          type: "PAYMENT",
+                          payload: [
+                            arrSelectedSeat,
+                            date,
+                          ],
+                        });
+                      }}
+                      style={{ paddingLeft: "12px" }}
+                    >
+                      <PaymentPopUp />
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -107,9 +122,7 @@ export default function Booking() {
                 <div className="booking-movie-name">
                   {store.Booking.booking[1]}
                 </div>
-                <div className="booking-date">
-                  {store.Booking.booking[2]} - {store.Booking.booking[3]}/2022
-                </div>
+                <div className="booking-date">{date}</div>
               </div>
             </div>
           </div>

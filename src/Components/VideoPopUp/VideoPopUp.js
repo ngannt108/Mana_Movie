@@ -18,7 +18,7 @@ export default function VideoPopUp(props) {
     return (
       <div className="Modal">
         <button onClick={openModal}>
-          <img width={60} src="https://www.freepnglogos.com/uploads/youtube-logo-icon-transparent---32.png"/>
+          <img alt="" width={60} src="https://www.freepnglogos.com/uploads/youtube-logo-icon-transparent---32.png"/>
           Trailer
         </button>
         {modal ? (

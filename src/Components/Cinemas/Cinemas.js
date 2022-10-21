@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import "./Cinemas.css";
 import VideoPopUp from "../VideoPopUp/VideoPopUp";
+import { Link } from "react-router-dom";
 import ModalBookingPopUp from "../ModalBookingPopUp/ModalBookingPopUp";
 import ModalSignInPopUp from "../ModalSignInPopUp/ModalSignInPopUp";
 import { API_CINEMA } from "../../Common/ApiController";
@@ -14,6 +15,7 @@ export default function Cinemas() {
   const [branchId, setbranchId] = useState(null);
   const [cinemaList, setCinemaList] = useState(null);
   const [cinemaName, setCinemaName] = useState(null);
+  const [cinemaAddress, setCinemaAddress] = useState(null);
   const [searchValue, setSearchValue] = useState("");
 
   //Các biến để xử lý việc hiện thêm thông tin rạp
@@ -49,7 +51,7 @@ export default function Cinemas() {
     fetch(API_CINEMA.CINEMA)
       .then((res) => res.json())
       .then((dt) => setCinemas(dt));
-  }, []);
+  }, [date]);
 
   //Khi user chọn branch hoặc nhấn xem thêm
   useEffect(() => {
@@ -72,6 +74,13 @@ export default function Cinemas() {
       setLastIndex(null);
       setTotalIems(null);
       setCurentDate(date);
+      [...document.getElementsByClassName("onClick-cinema")].forEach(
+        (element) => {
+          if (element.classList.value.includes("active-cinemas")) {
+            element.classList.remove("active-cinemas");
+          }
+        }
+      );
     }
   }, [branchId, date]);
 
@@ -84,8 +93,22 @@ export default function Cinemas() {
         .then((dt) => {
           setFilms(dt);
         });
+
+      fetch(`${API_CINEMA.DETAIL}${cineplex}&apiCinemaId=${ApiCinemaId}`)
+        .then((res) => res.json())
+        .then((dt) => setCinemaAddress(dt.Address));
     }
   }, [cineplex, ApiCinemaId, currentDate]);
+
+  const checkOnClick = (e, className) => {
+    [...document.getElementsByClassName(className)].forEach((element) => {
+      if (element.classList.value.includes("active-cinemas")) {
+        element.classList.remove("active-cinemas");
+      }
+    });
+    if (e.target.classList.value.includes(className))
+      e.target.classList.add("active-cinemas");
+  };
 
   return (
     <>
@@ -133,10 +156,11 @@ export default function Cinemas() {
                     <div
                       key={i}
                       className="onClick-cinema"
-                      onClick={() => {
+                      onClick={(e) => {
                         setCineplex(cinema.Cineplex);
                         setApiCinemaId(cinema.ApiCinemaId);
                         setCinemaName(cinema.Name);
+                        checkOnClick(e, "onClick-cinema");
                       }}
                     >
                       <img height={40} width={40} alt="" src={cinema.Logo} />
@@ -161,109 +185,130 @@ export default function Cinemas() {
               )}
             </div>
             {/* Films */}
-            <div className="tab-pane" id="film">
+            <div id="film">
               {films && (
                 <>
                   <div className="week">
                     {films.ShowTimes.map((date, i) => {
                       return (
                         <div
-                          onClick={() => {
+                          onClick={(e) => {
                             dateHandle(date);
+                            checkOnClick(e,'day-wrapper')
                           }}
                           className="day-wrapper"
                           key={i}
                         >
-                          <div>
-                            {date.slice(8, 10)}/{date.slice(5, 7)}
-                          </div>
+                          {date.slice(8, 10)}/{date.slice(5, 7)}
                         </div>
                       );
                     })}
                   </div>
                   <h3 style={{ margin: "28px" }}>
-                    Lịch chiếu phim {cinemaName} ngày{" "}
-                    {currentDate.slice(3, 5) + "/" + currentDate.slice(0, 2)}
+                    {"Lịch chiếu phim " +
+                      cinemaName +
+                      " ngày " +
+                      currentDate.slice(3, 5) +
+                      "/" +
+                      currentDate.slice(0, 2)}
                   </h3>
-                  {films.Films.map((film, i) => (
-                    <div key={i} className="date__item row">
-                      <a className="col-md-2" href="#">
-                        <img
-                          className="img-fluid"
-                          src={film.GraphicUrl}
-                          alt=""
-                        />
-                      </a>
-                      <div className="col-md-10">
-                        <h1>{film.ApiGenreName}</h1>
-                        <h2>{film.Title}</h2>
-                        <p>{film.SynopsisEn}</p>
-                        <div className="rating-row">
-                          <div className="film-rating">{film.ApiRating}</div>
-                          <div className="film-trailer">
-                            <VideoPopUp
-                              link={film.TrailerUrl.replace(
-                                "watch?v=",
-                                "embed/"
-                              )}
-                            />
-                          </div>
-                        </div>
-
-                        <div className="row">
-                          <div className="date__time col-md-10">
-                            <i className="far fa-clock"></i>
-                            <span>VIEWING TIMES</span>
-                            <div>
-                              {film.VersionsCaptions[0].ShowTimes.map(
-                                (showTime, i) => {
-                                  return (
-                                    <div
-                                      style={{ display: "inline-block" }}
-                                      key={i}
-                                    >
-                                      <div
-                                        style={{ display: "inline-block" }}
-                                        onClick={() => {
-                                          store.BookingDispatch({
-                                            type: "BOOKING",
-                                            payload: [
-                                              cinemaName,
-                                              film.Title,
-                                              showTime.ShowTime.slice(11, 16),
-                                              currentDate.slice(3, 5) +
-                                                "/" +
-                                                currentDate.slice(0, 2),
-                                              film.GraphicUrl,
-                                            ],
-                                          });
-                                        }}
-                                      >
-                                        {store.userAccount.account ?  <ModalBookingPopUp
-                                          info={[
-                                            cinemaName,
-                                            film.Title,
-                                            showTime.ShowTime.slice(11, 16),
-                                            currentDate.slice(3, 5) +
-                                              "/" +
-                                              currentDate.slice(0, 2),
-                                          ]}
-                                        /> : <ModalSignInPopUp info={showTime.ShowTime.slice(11, 16)}/>}
-                                       
-                                      </div>
-                                    </div>
-                                  );
-                                }
-                              )}
+                  <div className="cinema-address">{cinemaAddress}</div>
+                  {films.Films.length > 0 ? (
+                    films.Films.map((film, i) => (
+                      <div key={i} className="date__item row">
+                        <Link
+                          to={"/Movie/" + film.ApiFilmId}
+                          className="col-md-2"
+                          href="#"
+                        >
+                          <img
+                            className="img-fluid"
+                            src={film.GraphicUrl}
+                            alt=""
+                          />
+                        </Link>
+                        <div className="col-md-10">
+                          <h1>{film.ApiGenreName}</h1>
+                          <h2>{film.Title}</h2>
+                          <p>{film.SynopsisEn}</p>
+                          <div className="rating-row">
+                            <div className="film-rating">{film.ApiRating}</div>
+                            <div className="film-trailer">
+                              <VideoPopUp
+                                link={film.TrailerUrl.replace(
+                                  "watch?v=",
+                                  "embed/"
+                                )}
+                              />
                             </div>
                           </div>
-                          {/* <div className="date__min col-md-2 text-right">
-                          <span>{films.Films[i].VersionsCaptions[0].ShowTimes[0].Duration} mins</span>
-                        </div> */}
+
+                          <div className="row">
+                            <div className="date__time col-md-10">
+                              <i className="far fa-clock"></i>
+                              <span>VIEWING TIMES</span>
+                              <div>
+                                {film.VersionsCaptions[0].ShowTimes.map(
+                                  (showTime, i) => {
+                                    return (
+                                      <div
+                                        style={{ display: "inline-block" }}
+                                        key={i}
+                                      >
+                                        <div
+                                          style={{ display: "inline-block" }}
+                                          onClick={() => {
+                                            store.BookingDispatch({
+                                              type: "BOOKING",
+                                              payload: [
+                                                cinemaName,
+                                                film.Title,
+                                                showTime.ShowTime.slice(11, 16),
+                                                currentDate.slice(3, 5) +
+                                                  "/" +
+                                                  currentDate.slice(0, 2),
+                                                film.GraphicUrl,
+                                                cineplex,
+                                                ApiCinemaId,
+                                                film.ApiFilmId,
+                                                cinemaAddress,
+                                              ],
+                                            });
+                                          }}
+                                        >
+                                          {store.userAccount.account ? (
+                                            <ModalBookingPopUp
+                                              info={[
+                                                cinemaName,
+                                                film.Title,
+                                                showTime.ShowTime.slice(11, 16),
+                                                currentDate.slice(3, 5) +
+                                                  "/" +
+                                                  currentDate.slice(0, 2),
+                                              ]}
+                                            />
+                                          ) : (
+                                            <ModalSignInPopUp
+                                              info={showTime.ShowTime.slice(
+                                                11,
+                                                16
+                                              )}
+                                            />
+                                          )}
+                                        </div>
+                                      </div>
+                                    );
+                                  }
+                                )}
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    ))
+                  ) : (
+                    <div className="no-schedule-mess">No schedule yet</div>
+                  )}
                 </>
               )}
             </div>

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext,useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./SignIn.css";
 import { StoreContext } from "../../Redux/Store/Store";
@@ -14,6 +14,10 @@ export default function LogIn() {
     password: "",
     messError: "",
   });
+
+  useEffect(()=>{
+    window.scrollTo(0,0)
+  },[])
   // const REGEX_LIST = [
   //   {
   //     nameInput: "email",

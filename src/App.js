@@ -9,6 +9,7 @@ import SignUp from "./Components/SignUp/SignUp";
 import Footer from "./Components/Footer/Footer";
 import Cinemas from "./Components/Cinemas/Cinemas";
 import Booking from "./Components/Booking/Booking";
+import Payment from "./Components/Payment/Payment";
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
         <Route path="/SignUp" element={<SignUp />}></Route>
         <Route path="/Movie/*" element={<Movies />}></Route>
         <Route path="/Booking" element={<Booking />}></Route>
+        <Route path="/Payment" element={<Payment />}></Route>
       </Routes>
       <Footer />
     </BrowserRouter>

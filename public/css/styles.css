@@ -407,7 +407,7 @@ body {
   
   /* date  */
   #date {
-    margin-top: 5rem;
+    margin-top: 40px;
     border: 1px solid lightgray;
     border-radius: 12px;
   }
@@ -416,6 +416,7 @@ body {
     padding: 3rem 0 3rem 3rem;
     position: relative;
   }
+  
   .date__item::before {
     content: "";
     display: block;
@@ -427,6 +428,7 @@ body {
     top: 0;
     left: 15px;
   }
+ 
   #date ul li a {
     font-size: 18px;
     position: relative;
@@ -658,6 +660,7 @@ body {
   .cmnav__item:hover,
   .slick-current {
     opacity: 1;
+    cursor: pointer;
   }
   
   /* footer  */

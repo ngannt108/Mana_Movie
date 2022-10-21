@@ -9,7 +9,7 @@ function GetMovies(state, { type, payload }) {
     case "DETAIL":
       return { ...state, detail: payload };
     case "COMMENT":
-      return { ...state, comment: payload };
+      return { comment: payload };
     case "SCHEDULE":
       return { ...state, schedule: payload };
     default:

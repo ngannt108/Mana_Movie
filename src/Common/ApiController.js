@@ -11,6 +11,7 @@ export const API_MOVIE = {
 export const API_CINEMA = {
   CINEMA: API_DOMAIN + "cinema",
   BRANCH: API_DOMAIN + "cinema/branch?cineplex=",
+  DETAIL : API_DOMAIN + "cinema/branch/detail?cineplex=",
   SCHEDULE: API_DOMAIN + "cinema/branch/schedule?apiCinemaId=",
 };
 

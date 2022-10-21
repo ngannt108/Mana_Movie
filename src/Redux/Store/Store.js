@@ -2,6 +2,7 @@ import React, { createContext } from "react";
 import MoviesReducer from "../Reducer/MoviesReducer";
 import AccountsReducer from "../Reducer/AccountsReducer";
 import BookingReducer from "../Reducer/BookingReducer";
+import PaymentReducer from '../Reducer/PaymentReducer';
 
 export const StoreContext = createContext(null);
 const Store = ({ children }) => {
@@ -12,6 +13,7 @@ const Store = ({ children }) => {
   const [cmt, DispatchComment] = MoviesReducer();
   const [schedule, DispatchSchedule] = MoviesReducer();
   const [booking, DispatchBooking]= BookingReducer(null);
+  const [payment, DispatchPayment] = PaymentReducer(null);
 
   const store = {
     ComingMovie: coming,
@@ -22,12 +24,14 @@ const Store = ({ children }) => {
     AccountDispatch: DispatchAccount,
     MovieDetail: detail,
     MovieDetailDispatch: DispatchDetail,
-    Booking : booking,
-    BookingDispatch : DispatchBooking,
     Comment: cmt,
     CommentDispatch: DispatchComment,
     Showtime: schedule,
     ShowtimeDispatch: DispatchSchedule,
+    Booking : booking,
+    BookingDispatch : DispatchBooking,
+    Payment : payment,
+    PaymentDisPatch : DispatchPayment,
   };
   return (
     <StoreContext.Provider value={store}>{children}</StoreContext.Provider>

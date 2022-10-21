@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./MovieDetail.css";
 import { StoreContext } from "../../Redux/Store/Store";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { API_MOVIE } from "../../Common/ApiController";
 import MovieDetailCinemas from "../MovieDetailCinemas/MovieDetailCinemas";
 
@@ -14,6 +14,7 @@ export default function MovieDetail() {
   const date = `${current.getFullYear()}-${
     current.getMonth() + 1
   }-${current.getDate()}`;
+
   const [currentDate, setCurentDate] = useState(null);
 
   useEffect(() => {
@@ -116,25 +117,13 @@ export default function MovieDetail() {
           </div>
           <div className="movie-showtime">
             <h1 className="movie-showtime-header">Showtime</h1>
-            <section className="container">
+            <section className="container container-mdc">
               <div className="row showtime-fields">
-                {/* Nav pills */}
-                {/* <div className="icon-cinemas">
-                  {store.Showtime.schedule &&
-                    store.Showtime.schedule.Cineplexs.map((cinema, index) => (
-                      <Link
-                        className="nav-link"
-                        data-toggle="pill"
-                        to="#film"
-                        key={index}
-                      >
-                        <img width={80} alt="" src={cinema.Logo} />
-                      </Link>
-                    ))}
-                </div> */}
-                {/* Tab panes */}
                 <MovieDetailCinemas
-                  movieName={store.MovieDetail.detail.Title}
+                  setDate={setCurentDate}
+                  date={currentDate}
+                  banner={store.MovieDetail.detail.GraphicUrl}
+                  title={store.MovieDetail.detail.Title}
                 />
               </div>
             </section>

@@ -31,7 +31,7 @@ export default function ModalPopUp(props) {
           <Modal.Title>Modal title</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-            Bạn có muốn đặt vé xem phim {props.info[1]} vào lúc {props.info[2]} ngày {props.info[3]} tại rạp {props.info[0]} không?
+            Bạn có muốn đặt vé xem phim {props.info[1]} vào lúc {props.info[2]} ngày {props.info[3]} tại {props.info[0]} không?
         </Modal.Body>
         <Modal.Footer>
         <Button variant="warning" onClick={navigateBooking}>
