@@ -28,10 +28,10 @@ export default function ModalPopUp(props) {
         keyboard={false}
       >
         <Modal.Header>
-          <Modal.Title>Modal title</Modal.Title>
+          <Modal.Title>Are you sure?</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-            Bạn có muốn đặt vé xem phim {props.info[1]} vào lúc {props.info[2]} ngày {props.info[3]} tại {props.info[0]} không?
+            Sure you want to book {props.info[1]} at {props.info[2]} - {props.info[3]} at {props.info[0]} ?
         </Modal.Body>
         <Modal.Footer>
         <Button variant="warning" onClick={navigateBooking}>

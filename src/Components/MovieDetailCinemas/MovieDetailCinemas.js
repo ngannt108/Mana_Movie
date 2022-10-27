@@ -6,19 +6,13 @@ import { Link } from "react-router-dom";
 import { StoreContext } from "../../Redux/Store/Store";
 
 export default function Cinemas(props) {
-  //Các biến để xử lý việc chọn hãng rạp
   const store = useContext(StoreContext);
-
-  console.log(store.Showtime.schedule);
 
   const [branchId, setbranchId] = useState(null);
   const [cinemaName, setCinemaName] = useState(null);
   const [cinemaAddress, setCinemaAddress] = useState(null);
-
-  //Các biến để xử lý việc chọn chi tiết rạp sau khi chọn hãng rạp
   const [cineplex, setCineplex] = useState(null);
   const [ApiCinemaId, setApiCinemaId] = useState(null);
-  const [films, setFilms] = useState(null);
 
   //Biến ngày giờ hiện tại
   const current = new Date();
@@ -53,7 +47,7 @@ export default function Cinemas(props) {
     <>
       <section id="date" className="container">
         <div className="week-mdc">
-          {store.Showtime.schedule.ShowTimes.map((date, i) => {
+          {store.Showtime.schedule ? store.Showtime.schedule.ShowTimes.map((date, i) => {
             return (
               <div
                 onClick={(e) => {
@@ -67,14 +61,13 @@ export default function Cinemas(props) {
                 {date.slice(8, 10)}/{date.slice(5, 7)}
               </div>
             );
-          })}
+          }) : <div>Film chua co lich chieu</div>}
         </div>
         <div className="row">
           {/* Cinema Logo */}
           <div style={{ width: "100%" }}>
             <ul className="nav nav-pills col-600-12 border-top">
-              {store.Showtime.schedule.Cineplexs &&
-                store.Showtime.schedule.Cineplexs.map((cinema, index) => (
+              {store.Showtime.schedule && store.Showtime.schedule.Cineplexs.map((cinema, index) => (
                   <li
                     onClick={() => setbranchId(cinema.Id)}
                     key={index}
@@ -99,8 +92,10 @@ export default function Cinemas(props) {
                       key={i}
                       className="onClick-cinema"
                       onClick={(e) => {
+                        setApiCinemaId(cinema.ApiCinemaId);
                         setCinemaName(cinema.Name);
                         setCinemaAddress(cinema.Address);
+                        setCineplex(cinema.Cineplex);
                         checkOnClick(e, "onClick-cinema");
                       }}
                     >
@@ -115,7 +110,7 @@ export default function Cinemas(props) {
             </div>
             {/* Show Time */}
             <div id="film">
-              {cinemaName && (
+              {cinemaName ? (
                 <div>
                   {/* Show Time Detail */}
                   {store.Showtime.schedule.Cinemas.Items.filter((cinema) => {
@@ -130,6 +125,7 @@ export default function Cinemas(props) {
                                 (showTime, i) => {
                                   return (
                                     <div
+                                    key={i}
                                       style={{ display: "inline-block" }}
                                       onClick={() => {
                                         store.BookingDispatch({
@@ -144,7 +140,7 @@ export default function Cinemas(props) {
                                             props.banner,
                                             cineplex,
                                             ApiCinemaId,
-                                            film.ApiFilmId,
+                                            props.apiFilmId,
                                             cinemaAddress,
                                           ],
                                         });
@@ -178,7 +174,7 @@ export default function Cinemas(props) {
                   ))}
                   <p className="cinema-address-mdc">{cinemaAddress}</p>
                 </div>
-              )}
+              ) : <div className="shedule-mess">Schedule is not available</div> }
             </div>
           </div>
         </div>

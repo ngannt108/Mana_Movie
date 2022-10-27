@@ -1,4 +1,4 @@
-const API_DOMAIN = "http://localhost:3003/";
+export const API_DOMAIN = "http://localhost:3003/";
 // const API_DOMAIN = "http://10.88.55.39:3001/";
 
 export const API_MOVIE = {

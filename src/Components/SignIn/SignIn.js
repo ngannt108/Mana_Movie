@@ -5,6 +5,11 @@ import { StoreContext } from "../../Redux/Store/Store";
 import { API_ACCOUNTS } from "../../Common/ApiController";
 
 export default function LogIn() {
+
+  useEffect(()=>{
+    window.scrollTo(0,0)
+  },[])
+
   const store = useContext(StoreContext);
   const [email, setEmail] = useState({
     email: "",
@@ -15,9 +20,6 @@ export default function LogIn() {
     messError: "",
   });
 
-  useEffect(()=>{
-    window.scrollTo(0,0)
-  },[])
   // const REGEX_LIST = [
   //   {
   //     nameInput: "email",

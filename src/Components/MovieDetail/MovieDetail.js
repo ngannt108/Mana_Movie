@@ -4,10 +4,12 @@ import { StoreContext } from "../../Redux/Store/Store";
 import { useParams } from "react-router-dom";
 import { API_MOVIE } from "../../Common/ApiController";
 import MovieDetailCinemas from "../MovieDetailCinemas/MovieDetailCinemas";
+import VideoPopUp from "../VideoPopUp/VideoPopUp";
 
 export default function MovieDetail() {
   const store = useContext(StoreContext);
   const { ApiFilmId } = useParams();
+  const [cmt, setCmt] = useState(null);
 
   //Biến ngày giờ hiện tại
   const current = new Date();
@@ -18,8 +20,12 @@ export default function MovieDetail() {
   const [currentDate, setCurentDate] = useState(null);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     if (ApiFilmId) {
-      fetch(`${API_MOVIE.DETAIL + ApiFilmId}`)
+      fetch(`${API_MOVIE.DETAIL}${ApiFilmId}`)
         .then((res) => res.json())
         .then((dt) => {
           store.MovieDetailDispatch({
@@ -27,13 +33,14 @@ export default function MovieDetail() {
             payload: dt[0],
           });
         });
-      fetch(`${API_MOVIE.COMMENT + ApiFilmId}`)
+      fetch(`${API_MOVIE.COMMENT}${ApiFilmId}`)
         .then((res) => res.json())
         .then((dt) => {
-          store.CommentDispatch({
-            type: "COMMENT",
-            payload: dt[0].Comment[0].Items,
-          });
+          if (dt[0].Comment[0].Items) {
+            setCmt(dt[0].Comment[0].Items);
+          } else {
+            setCmt(null);
+          }
         });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -42,7 +49,7 @@ export default function MovieDetail() {
   useEffect(() => {
     if (ApiFilmId) {
       setCurentDate(date);
-      fetch(`${API_MOVIE.SCHEDULE + ApiFilmId}&date=${currentDate}`)
+      fetch(`${API_MOVIE.SCHEDULE}${ApiFilmId}&date=${currentDate}`)
         .then((res) => res.json())
         .then((dt) => {
           store.ShowtimeDispatch({
@@ -63,7 +70,7 @@ export default function MovieDetail() {
               width={"100%"}
               src={store.MovieDetail.detail.BannerUrl}
             />
-          </div>
+          </div>  
           <div className="movie-detail-main-content">
             <div className="movie-detail-all-info">
               <div className="left-banner">
@@ -112,6 +119,7 @@ export default function MovieDetail() {
                     {store.MovieDetail.detail.SynopsisEn}
                   </div>
                 </div>
+                <div style={{fontSize : '16px',marginLeft : "14px"}}><VideoPopUp link={store.MovieDetail.detail.TrailerUrl}/></div>
               </div>
             </div>
           </div>
@@ -120,19 +128,21 @@ export default function MovieDetail() {
             <section className="container container-mdc">
               <div className="row showtime-fields">
                 <MovieDetailCinemas
+                  shedule={store.Showtime.schedule}
                   setDate={setCurentDate}
                   date={currentDate}
                   banner={store.MovieDetail.detail.GraphicUrl}
                   title={store.MovieDetail.detail.Title}
+                  apiFilmId={ApiFilmId}
                 />
               </div>
             </section>
           </div>
-          {store.Comment.comment && (
+          {cmt && (
             <div className="movie-comment">
               <h1 className="movie-comment-header">Comments</h1>
               <div className="movie-comment-field">
-                {store.Comment.comment.map((cmt, index) => (
+                {cmt.map((cmt, index) => (
                   <div key={index} className="user-comment-wrapper">
                     {cmt.Avatar ? (
                       <img

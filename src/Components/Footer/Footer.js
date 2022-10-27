@@ -5,11 +5,11 @@ export default function Footer() {
   return (
     // Footer
     <footer className="text-center">
-      <div className="contact bg-white py-5">
+      {/* <div className="contact bg-white py-5">
         <p>Need help? Contact our support team on</p>
         <h1>0347 297 306</h1>
-      </div>
-      <div className="about dark">
+      </div> */}
+      <div style={{marginTop :"80px"}} className="about dark">
         <div className="about__top container-xl pt-5 pb-3">
           <div className="row">
             <div className="col-md-3 col-12">
@@ -84,9 +84,9 @@ export default function Footer() {
         </div>
         <div className="about__bottom container-xl text-left">
           <p>
-            2017 © Movie Star /
-            <Link to="https://www.klevermedia.co.uk/">
-              Web design by Klever media
+            2022 © Movie Star /
+            <Link to="#">
+              Web design by Mana Team
             </Link>
           </p>
         </div>

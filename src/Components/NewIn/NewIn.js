@@ -59,6 +59,7 @@ export default function NewIn() {
     }
   }, [store.ShowingMovie.listMovie]);
 
+
   return (
     // Coming Soon
     store.ShowingMovie.listMovie && (

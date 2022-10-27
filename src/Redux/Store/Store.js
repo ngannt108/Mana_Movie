@@ -10,7 +10,6 @@ const Store = ({ children }) => {
   const [showing, DispatchShowingMovie] = MoviesReducer();
   const [detail, DispatchDetail] = MoviesReducer();
   const [account, DispatchAccount] = AccountsReducer(null);
-  const [cmt, DispatchComment] = MoviesReducer();
   const [schedule, DispatchSchedule] = MoviesReducer();
   const [booking, DispatchBooking]= BookingReducer(null);
   const [payment, DispatchPayment] = PaymentReducer(null);
@@ -24,8 +23,6 @@ const Store = ({ children }) => {
     AccountDispatch: DispatchAccount,
     MovieDetail: detail,
     MovieDetailDispatch: DispatchDetail,
-    Comment: cmt,
-    CommentDispatch: DispatchComment,
     Showtime: schedule,
     ShowtimeDispatch: DispatchSchedule,
     Booking : booking,

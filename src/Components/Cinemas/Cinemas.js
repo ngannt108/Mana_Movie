@@ -116,7 +116,7 @@ export default function Cinemas() {
         <img
           width={"100%"}
           alt="cinemas wallpaper"
-          src="https://png.pngtree.com/thumb_back/fh260/back_our/20190621/ourmid/pngtree-leisure-time-cinema-watching-movie-background-image_195506.jpg?fbclid=IwAR3vi9xD-j841wN_7OhyoyVQpoYqMS42q0wlc7TfLTY80LMATSHpCglQGVw"
+          src="https://www.ascottproductions.com/wp-content/uploads/2020/02/as_production_banner-1.png?fbclid=IwAR25oOsesWcHedgaAjc47AtiYVkg2L_txtrtboAAkN8w72peoS970PLT6-4"
         />
       </div>
       <section id="date" className="container">

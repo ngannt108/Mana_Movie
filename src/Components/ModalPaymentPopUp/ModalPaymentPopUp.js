@@ -31,7 +31,7 @@ export default function ModalPaymentPopUp(props) {
           <Modal.Title>Payment</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-            Bạn có muốn thanh toán?
+            Go to payment?
         </Modal.Body>
         <Modal.Footer>
         <Button variant="warning" onClick={navigatePayment}>

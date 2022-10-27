@@ -7,6 +7,11 @@ import { API_MOVIE } from "../../Common/ApiController";
 
 export default function Home() {
   const store = useContext(StoreContext);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   useEffect(() => {
     fetch(API_MOVIE.MOVIE)
       .then((res) => res.json())

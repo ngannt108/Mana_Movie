@@ -14,16 +14,6 @@ export default function Header() {
       {/* header */}
       <header style={{paddingTop : '32px'}} id="header__run">
         <div className="container-xl">
-          {/* <div className="heading text-right text-white">
-            <a
-              href="tel:03301234567"
-              className="text-white small font-weight-bold"
-            >
-              <i className="fa fa-phone-alt"></i>
-              <span className="pl-1 pr-2"> 0330 123 4567</span>
-              <i className="pl-2 fa fa-search"></i>
-            </a>
-          </div> */}
           {/* navbar */}
           <nav className="navbar navbar-expand-md navbar-dark">
             {/* Brand */}
@@ -58,13 +48,7 @@ export default function Header() {
                   <Link className="nav-link" to="/Cinemas">
                     Cinemas
                   </Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="#">
-                    News
-                  </Link>
-                </li>
-                
+                </li>              
                   {userName ? (
                     <li className="nav-item LoggedIn">
                     <div style={{marginTop : '20px'}} className="dropdown ">
