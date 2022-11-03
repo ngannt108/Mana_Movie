@@ -66,9 +66,9 @@ export default function NewIn() {
       <>
         <section id="comingsoon" className="dark">
           <div>
-            <div className="newin-popup">
+            {/* <div className="newin-popup">
               <VideoPopUp2 link={link} />
-            </div>
+            </div> */}
             <Slider
               asNavFor={nav2}
               ref={(slider1) => setNav1(slider1)}
@@ -119,6 +119,20 @@ export default function NewIn() {
                 className="comingsoon__nav slider-nav"
               >
                 {store.ShowingMovie.listMovie?.map((movie, index) => (
+                  <div
+                    onClick={() => {
+                      setLink(movie.TrailerUrl);
+                    }}
+                    key={index}
+                    className="cmnav__item"
+                    data-slick-index="0"
+                  >
+                    <img src={movie.GraphicUrl} alt="" className="mx-auto" />
+                    <h5 className="mb-2">{movie.Title}</h5>
+                    <h6>{movie.OpeningDate.slice(0, 10)}</h6>
+                  </div>
+                ))}
+                 {store.ShowingMovie.listMovie?.map((movie, index) => (
                   <div
                     onClick={() => {
                       setLink(movie.TrailerUrl);

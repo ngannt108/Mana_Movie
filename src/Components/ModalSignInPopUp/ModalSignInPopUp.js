@@ -29,7 +29,7 @@ export default function ModalPopUp(props) {
         keyboard={false}
       >
         <Modal.Header>
-          <Modal.Title>Modal title</Modal.Title>
+          <Modal.Title>Please Sign In</Modal.Title>
         </Modal.Header>
         <Modal.Body>
             Sorry but you haven't signed in yet. Please sign in before booking ticket for the movie!

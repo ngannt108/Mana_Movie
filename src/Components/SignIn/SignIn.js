@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./SignIn.css";
 import { StoreContext } from "../../Redux/Store/Store";
 import { API_ACCOUNTS } from "../../Common/ApiController";
+import swal from "sweetalert";
 
 export default function LogIn() {
 
@@ -51,14 +52,22 @@ export default function LogIn() {
         body: JSON.stringify(account),
       });
       if (res.status === 200) {
-        alert("Thành công");
+        await swal({
+          title: "Login Successfully",
+          // text: "Enjoy your movie",
+          icon: "success",
+        });
         store.AccountDispatch({
           type: "ACCOUNT",
           payload: account.email,
         });
         navigate("/");
       } else {
-        alert("Đăng nhập thất bại!");
+        await swal({
+          title: "Login Failed",
+          text: "Please try again",
+          icon: "error",
+        });
       }
     }
   };

@@ -7,6 +7,7 @@
   background: linear-gradient(to right, #fbbd61, #ec7532);
   border: none;
   border-radius: 16px;
+  padding: 4px 8px;
 }
 .Modal button:focus{
   outline: none;

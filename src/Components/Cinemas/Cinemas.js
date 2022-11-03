@@ -157,6 +157,7 @@ export default function Cinemas() {
                       key={i}
                       className="onClick-cinema"
                       onClick={(e) => {
+                        window.scrollTo(280, 280)
                         setCineplex(cinema.Cineplex);
                         setApiCinemaId(cinema.ApiCinemaId);
                         setCinemaName(cinema.Name);

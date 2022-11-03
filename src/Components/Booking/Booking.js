@@ -13,8 +13,8 @@ export default function Booking() {
   var [arrSelectedSeat, setArr] = useState([]);
 
   useEffect(()=>{
-    window.scrollTo(0,0)
-  },[])
+    window.scrollTo(660,660)
+  })
 
   const checkSelected = (e) => {
     if (

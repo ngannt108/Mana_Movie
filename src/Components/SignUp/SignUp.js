@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../SignIn/SignIn.css";
 import { API_ACCOUNTS } from "../../Common/ApiController";
+import swal from "sweetalert";
 
 export default function SignUp() {
   const [email, setEmail] = useState({
@@ -43,17 +44,29 @@ export default function SignUp() {
         body: JSON.stringify(account),
       });
       if (res.status === 200) {
-        alert("Đăng ký thành công");
+        await swal({
+          title: "SignUp Successful",
+          button: "Go to login",
+          icon: "success",
+        });
         navigate("/SignIn");
       } else {
-        alert("Đăng ký thất bại!");
+        await swal({
+          title: "SignUp Failed",
+          text: "Please try again later!",
+          icon: "error",
+        });
       }
     }
   };
   const Validation = (account) => {
     Object.values(account).forEach((info) => {
       if (info === "") {
-        alert("Vui lòng nhập đầy đủ");
+         swal({
+          title: "SignUp Failed",
+          text: "Please fill all fields",
+          icon: "error",
+        });
         return false;
       }
     });
